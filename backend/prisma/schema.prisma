@@ -56,6 +56,7 @@ model Profile {
   firebaseUid     String      @unique
   email           String?     @unique
   phone           String?     @unique
+  passwordHash    String?
   fullName        String
   role            Role        @default(CUSTOMER)
   companyName     String?

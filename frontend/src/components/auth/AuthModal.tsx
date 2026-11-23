@@ -4,18 +4,17 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { 
   X, 
-  Phone, 
   Mail, 
-  ShieldCheck, 
   ArrowRight, 
   CheckCircle2, 
-  Sparkles, 
-  RefreshCw, 
   Building2, 
   User, 
   Lock,
+  Eye,
+  EyeOff,
   Loader2,
-  KeyRound
+  ShieldCheck,
+  Phone
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
@@ -24,8 +23,8 @@ export const AuthModal: React.FC = () => {
     isAuthModalOpen, 
     authModalMode,
     closeAuthModal, 
-    sendOtp, 
-    verifyOtp, 
+    login,
+    register,
     loginWithGoogle 
   } = useAuth();
 
@@ -36,59 +35,96 @@ export const AuthModal: React.FC = () => {
       setAuthMode(authModalMode);
     }
   }, [authModalMode, isAuthModalOpen]);
-  const [identifierType, setIdentifierType] = useState<'phone' | 'email'>('phone');
-  const [identifier, setIdentifier] = useState('');
+
+  // Form states
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [gstin, setGstin] = useState('');
   const [role, setRole] = useState<'CUSTOMER' | 'DEALER'>('CUSTOMER');
 
-  // Step state: 1 = enter identifier, 2 = enter OTP
-  const [step, setStep] = useState<1 | 2>(1);
-  const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
   if (!isAuthModalOpen) return null;
 
-  const handleSendOtp = async (e: React.FormEvent) => {
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+    setShowPassword(false);
+    setFullName('');
+    setPhone('');
+    setCompanyName('');
+    setGstin('');
+    setError(null);
+    setSuccessMsg(null);
+  };
+
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setSuccessMsg(null);
 
-    if (!identifier.trim()) {
-      setError(identifierType === 'phone' ? 'Please enter your mobile number.' : 'Please enter your email address.');
+    if (!email.trim() || !email.includes('@')) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    if (!password.trim()) {
+      setError('Please enter your password.');
       return;
     }
 
     setLoading(true);
-    const res = await sendOtp(identifier.trim(), identifierType);
+    const res = await login(email.trim(), password.trim());
     setLoading(false);
 
     if (res.success) {
-      setStep(2);
-      setSuccessMsg(`Verification code dispatched to ${identifier}`);
+      setSuccessMsg('Authentication successful! Welcome to Arveer Impex.');
+      setTimeout(() => {
+        closeAuthModal();
+        resetForm();
+      }, 1000);
     } else {
-      setError(res.error || 'Failed to dispatch code. Please check details and retry.');
+      setError(res.error || 'Invalid email or password. Please try again.');
     }
   };
 
-  const handleVerifyOtp = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setSuccessMsg(null);
 
-    if (!otp.trim()) {
-      setError('Please enter the 6-digit verification code.');
+    if (!email.trim() || !email.includes('@')) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    if (!password.trim() || password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    if (!fullName.trim()) {
+      setError('Please enter your full name.');
+      return;
+    }
+
+    if (role === 'DEALER' && !companyName.trim()) {
+      setError('Please provide your Dealership / Firm name.');
       return;
     }
 
     setLoading(true);
-    const res = await verifyOtp({
-      identifier: identifier.trim(),
-      otp: otp.trim(),
-      fullName: fullName.trim() || undefined,
+    const res = await register({
+      email: email.trim(),
+      password: password.trim(),
+      fullName: fullName.trim(),
+      phone: phone.trim() || undefined,
       role: role,
       companyName: companyName.trim() || undefined,
       gstin: gstin.trim() || undefined,
@@ -96,21 +132,14 @@ export const AuthModal: React.FC = () => {
     setLoading(false);
 
     if (res.success) {
-      setSuccessMsg('Authentication verified via Neon Cloud! Welcome.');
+      setSuccessMsg('Account created successfully! Welcome to the portal.');
       setTimeout(() => {
         closeAuthModal();
         resetForm();
-      }, 1200);
+      }, 1000);
     } else {
-      setError(res.error || 'Invalid code. Please retry.');
+      setError(res.error || 'Failed to create account. Please check details.');
     }
-  };
-
-  const resetForm = () => {
-    setStep(1);
-    setOtp('');
-    setError(null);
-    setSuccessMsg(null);
   };
 
   const handleGoogleSignIn = async () => {
@@ -148,8 +177,9 @@ export const AuthModal: React.FC = () => {
                 <h3 className="font-serif text-lg font-bold text-[#F7F5F0]">
                   Buyer & Dealer Portal
                 </h3>
-                <p className="text-[11px] text-[#A6C96A] font-mono">
-                  Real-Time Neon Cloud Verification
+                <p className="text-[11px] text-[#A6C96A] font-mono flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-[#A6C96A]" />
+                  <span>Neon Lakebase Postgres Protected</span>
                 </p>
               </div>
             </div>
@@ -168,7 +198,7 @@ export const AuthModal: React.FC = () => {
             <button
               type="button"
               onClick={() => { setAuthMode('signin'); resetForm(); }}
-              className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
                 authMode === 'signin'
                   ? 'bg-[#24583D] text-[#F7F5F0] shadow-sm'
                   : 'text-[#E9E1CC]/70 hover:text-white'
@@ -179,13 +209,13 @@ export const AuthModal: React.FC = () => {
             <button
               type="button"
               onClick={() => { setAuthMode('register'); resetForm(); }}
-              className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
                 authMode === 'register'
                   ? 'bg-[#24583D] text-[#F7F5F0] shadow-sm'
                   : 'text-[#E9E1CC]/70 hover:text-white'
               }`}
             >
-              Register Account
+              Create Account
             </button>
           </div>
         </div>
@@ -207,251 +237,327 @@ export const AuthModal: React.FC = () => {
             </div>
           )}
 
-          {/* STEP 1: Enter Phone / Email */}
-          {step === 1 ? (
-            <form onSubmit={handleSendOtp} className="space-y-4">
+          {/* SIGN IN FORM (Email ID + Password) */}
+          {authMode === 'signin' ? (
+            <form onSubmit={handleSignIn} className="space-y-4">
               
-              {/* Type Switcher */}
-              <div className="flex items-center justify-between text-xs pb-1">
-                <span className="text-[#E9E1CC]/80 font-medium">Verify using:</span>
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => { setIdentifierType('phone'); setIdentifier(''); }}
-                    className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors flex items-center gap-1 ${
-                      identifierType === 'phone'
-                        ? 'bg-[#A6C96A] text-[#102C22] font-bold'
-                        : 'bg-white/10 text-white/70 hover:text-white'
-                    }`}
-                  >
-                    <Phone className="w-3 h-3" />
-                    <span>Mobile SMS</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => { setIdentifierType('email'); setIdentifier(''); }}
-                    className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors flex items-center gap-1 ${
-                      identifierType === 'email'
-                        ? 'bg-[#A6C96A] text-[#102C22] font-bold'
-                        : 'bg-white/10 text-white/70 hover:text-white'
-                    }`}
-                  >
-                    <Mail className="w-3 h-3" />
-                    <span>Email OTP</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Identifier Input */}
+              {/* Email Address */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                  {identifierType === 'phone' ? 'Mobile / WhatsApp Number *' : 'Email Address *'}
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1.5">
+                  Email Address *
                 </label>
                 <div className="relative">
-                  {identifierType === 'phone' ? (
-                    <div className="flex">
-                      <span className="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-[rgba(166,201,106,0.3)] bg-[#14261F] text-[#A6C96A] text-xs font-mono font-bold">
-                        +91
-                      </span>
-                      <input
-                        type="tel"
-                        required
-                        value={identifier}
-                        onChange={(e) => setIdentifier(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                        placeholder="98220 12345"
-                        className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] rounded-r-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#A6C96A]"
-                      />
-                    </div>
-                  ) : (
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
-                      <input
-                        type="email"
-                        required
-                        value={identifier}
-                        onChange={(e) => setIdentifier(e.target.value)}
-                        placeholder="dealer@agroveer.com"
-                        className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] rounded-xl pl-9 pr-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#A6C96A]"
-                      />
-                    </div>
-                  )}
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="name@company.com or your-email@gmail.com"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                  />
                 </div>
               </div>
 
-              {/* Additional Fields for Registration */}
-              {authMode === 'register' && (
-                <div className="space-y-3 pt-2 border-t border-white/10 animate-in fade-in">
+              {/* Password */}
+              <div>
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1.5">
+                  Password *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    className="w-full pl-9 pr-10 py-2.5 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/50 hover:text-white transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 px-4 bg-[#A6C96A] hover:bg-[#b8da7b] text-[#102C22] font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Signing in...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Sign In to Portal</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+
+              {/* Bottom Toggle */}
+              <div className="text-center pt-2">
+                <p className="text-xs text-[#E9E1CC]/70">
+                  Don't have an account?{' '}
+                  <button
+                    type="button"
+                    onClick={() => { setAuthMode('register'); resetForm(); }}
+                    className="text-[#A6C96A] font-bold hover:underline"
+                  >
+                    Register Account
+                  </button>
+                </p>
+              </div>
+
+            </form>
+          ) : (
+            /* REGISTER FORM (Email ID + Password + Details) */
+            <form onSubmit={handleRegister} className="space-y-3.5">
+              
+              {/* Account Type Selector */}
+              <div>
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                  Account Classification *
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setRole('CUSTOMER')}
+                    className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                      role === 'CUSTOMER'
+                        ? 'bg-[#24583D] border-[#A6C96A] text-[#F7F5F0]'
+                        : 'bg-[#0E221B] border-white/10 text-white/70 hover:text-white'
+                    }`}
+                  >
+                    <User className="w-3.5 h-3.5" />
+                    <span>Farmer / Retail Buyer</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setRole('DEALER')}
+                    className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                      role === 'DEALER'
+                        ? 'bg-[#24583D] border-[#A6C96A] text-[#F7F5F0]'
+                        : 'bg-[#0E221B] border-white/10 text-white/70 hover:text-white'
+                    }`}
+                  >
+                    <Building2 className="w-3.5 h-3.5" />
+                    <span>B2B Dealer / Wholesale</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Full Name */}
+              <div>
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                  Full Name *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                    <User className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="e.g. Ramesh Patil or Rajesh Sharma"
+                    className="w-full pl-9 pr-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Email Address */}
+              <div>
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                  Email Address *
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="name@company.com or email@example.com"
+                    className="w-full pl-9 pr-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                  Create Password * (min. 6 characters)
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Create a strong password"
+                    className="w-full pl-9 pr-10 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/50 hover:text-white transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Mobile Number */}
+              <div>
+                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                  Mobile / WhatsApp Number <span className="text-white/40 font-normal">(Optional, for logistics updates)</span>
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="e.g. +91 98765 43210"
+                    className="w-full pl-9 pr-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* B2B Dealer Fields */}
+              {role === 'DEALER' && (
+                <div className="space-y-2.5 pt-1 border-t border-[rgba(166,201,106,0.2)]">
                   <div>
-                    <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">Full Name *</label>
+                    <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                      Agro Dealership / Firm Name *
+                    </label>
                     <input
                       type="text"
                       required
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      placeholder="e.g. Ramesh Patel"
-                      className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] rounded-xl px-3.5 py-2 text-xs text-white focus:outline-none focus:border-[#A6C96A]"
+                      value={companyName}
+                      onChange={(e) => setCompanyName(e.target.value)}
+                      placeholder="e.g. Kisan Agri Machineries & Tools"
+                      className="w-full px-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
                     />
                   </div>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="block text-[11px] font-semibold text-[#E9E1CC] mb-1">Firm / Shop Name</label>
-                      <input
-                        type="text"
-                        value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                        placeholder="Kisan Agro Works"
-                        className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-[#A6C96A]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] font-semibold text-[#E9E1CC] mb-1">Account Type</label>
-                      <select
-                        value={role}
-                        onChange={(e: any) => setRole(e.target.value)}
-                        className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] rounded-xl px-2.5 py-2 text-xs text-white focus:outline-none focus:border-[#A6C96A]"
-                      >
-                        <option value="CUSTOMER">Retail Buyer</option>
-                        <option value="DEALER">Authorized Dealer</option>
-                      </select>
-                    </div>
-                  </div>
-
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#E9E1CC] mb-1">GSTIN Number (Optional)</label>
+                    <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                      GSTIN (Optional, for 18% Input Tax Credit)
+                    </label>
                     <input
                       type="text"
+                      maxLength={15}
                       value={gstin}
                       onChange={(e) => setGstin(e.target.value.toUpperCase())}
-                      placeholder="27AABCS1429B1Z8"
-                      className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] rounded-xl px-3.5 py-2 text-xs text-white uppercase focus:outline-none focus:border-[#A6C96A]"
+                      placeholder="e.g. 27AAAAA0000A1Z5"
+                      className="w-full px-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] uppercase font-mono placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
                     />
                   </div>
                 </div>
               )}
 
-              {/* Submit CTA */}
+              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border border-[#A6C96A]/40 shadow-lg hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
+                className="w-full py-3 px-4 bg-[#A6C96A] hover:bg-[#b8da7b] text-[#102C22] font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer mt-2"
               >
                 {loading ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin text-[#A6C96A]" />
-                    <span>Dispatching Neon OTP...</span>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Creating Account...</span>
                   </>
                 ) : (
                   <>
-                    <span>Get Real-Time OTP</span>
-                    <ArrowRight className="w-4 h-4 text-[#A6C96A]" />
-                  </>
-                )}
-              </button>
-            </form>
-          ) : (
-            /* STEP 2: Enter OTP Code */
-            <form onSubmit={handleVerifyOtp} className="space-y-4">
-              <div className="p-3.5 rounded-2xl bg-[#14261F] border border-[rgba(166,201,106,0.2)] text-xs">
-                <span className="text-white/60 block text-[11px]">Verification code dispatched to:</span>
-                <span className="font-mono font-bold text-white text-sm mt-0.5 block">{identifier}</span>
-                <button
-                  type="button"
-                  onClick={() => setStep(1)}
-                  className="text-[#A6C96A] text-[11px] underline mt-1 cursor-pointer block"
-                >
-                  Change number or email
-                </button>
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                  Enter 6-Digit Verification Code *
-                </label>
-                <div className="relative">
-                  <KeyRound className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
-                  <input
-                    type="text"
-                    required
-                    maxLength={6}
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                    placeholder="• • • • • •"
-                    className="w-full bg-[#14261F] border border-[rgba(166,201,106,0.4)] rounded-xl pl-9 pr-3.5 py-3 text-center tracking-[0.3em] font-mono text-base font-bold text-white focus:outline-none focus:border-[#A6C96A]"
-                  />
-                </div>
-              </div>
-
-              {/* Verify CTA */}
-              <button
-                type="submit"
-                disabled={loading || otp.length < 4}
-                className="w-full py-3 px-4 rounded-xl bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border border-[#A6C96A]/40 shadow-lg hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-50"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin text-[#A6C96A]" />
-                    <span>Verifying with Neon DB...</span>
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle2 className="w-4 h-4 text-[#A6C96A]" />
-                    <span>Verify & Continue Shopping</span>
+                    <span>Create Account & Enter</span>
+                    <ArrowRight className="w-4 h-4" />
                   </>
                 )}
               </button>
 
-              <button
-                type="button"
-                onClick={handleSendOtp}
-                disabled={loading}
-                className="w-full text-center text-xs text-[#E9E1CC]/70 hover:text-white underline py-1"
-              >
-                Didn't receive code? Resend OTP
-              </button>
+              {/* Bottom Toggle */}
+              <div className="text-center pt-1">
+                <p className="text-xs text-[#E9E1CC]/70">
+                  Already have an account?{' '}
+                  <button
+                    type="button"
+                    onClick={() => { setAuthMode('signin'); resetForm(); }}
+                    className="text-[#A6C96A] font-bold hover:underline"
+                  >
+                    Sign In
+                  </button>
+                </p>
+              </div>
+
             </form>
           )}
 
-          {/* Divider */}
-          <div className="relative flex py-2 items-center">
-            <div className="flex-grow border-t border-white/10" />
-            <span className="flex-shrink mx-3 text-[10px] uppercase font-mono tracking-widest text-white/40">Or</span>
-            <div className="flex-grow border-t border-white/10" />
+          {/* Social Divider */}
+          <div className="relative py-2">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/10" />
+            </div>
+            <div className="relative flex justify-center text-[10px] uppercase font-mono tracking-wider">
+              <span className="bg-[#102C22] px-2 text-[#E9E1CC]/60">
+                OR
+              </span>
+            </div>
           </div>
 
-          {/* Google Sign In Option */}
+          {/* Google Sign-in */}
           <button
             type="button"
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-gray-100 text-gray-800 font-semibold text-xs transition-colors flex items-center justify-center gap-2.5 shadow-sm cursor-pointer"
+            className="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 border border-white/15 rounded-xl text-xs font-semibold text-[#F7F5F0] transition-colors flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path
-                fill="#4285F4"
-                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                fill="#EA4335"
+                d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"
               />
               <path
-                fill="#34A853"
-                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#4285F4"
+                d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"
               />
               <path
                 fill="#FBBC05"
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+                d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.2s.7 5.5 1.9 7.9l3.7-2.9c-.2-.7-.3-1.5-.3-2.4z"
               />
               <path
-                fill="#EA4335"
-                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+                fill="#34A853"
+                d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2-6.4-4.8L1.9 16.9C3.7 20.6 7.5 23.5 12 23.5z"
               />
             </svg>
             <span>Continue with Google</span>
           </button>
 
-          {/* Value note */}
-          <div className="flex items-center justify-center gap-2 text-[10px] text-white/50 pt-2 text-center">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#A6C96A]" />
-            <span>Authorized by Arveer Impex • Protected by Neon Cloud Auth</span>
-          </div>
+          {/* Privacy Note */}
+          <p className="text-[10px] text-center text-[#E9E1CC]/50 leading-relaxed pt-1">
+            By signing in, you agree to Arveer Impex Commercial Dealer Terms & Privacy Policy.
+          </p>
 
         </div>
       </div>

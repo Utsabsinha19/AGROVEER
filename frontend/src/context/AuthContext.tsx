@@ -31,6 +31,18 @@ interface AuthContextType {
   authModalMode: 'signin' | 'register';
   openAuthModal: (mode?: 'signin' | 'register' | unknown) => void;
   closeAuthModal: () => void;
+  login: (email: string, password: string) => Promise<{ success: boolean; profile?: UserProfile; error?: string }>;
+  register: (params: {
+    email: string;
+    password: string;
+    fullName: string;
+    phone?: string;
+    role?: 'CUSTOMER' | 'DEALER';
+    companyName?: string;
+    gstin?: string;
+    city?: string;
+    state?: string;
+  }) => Promise<{ success: boolean; profile?: UserProfile; error?: string }>;
   sendOtp: (identifier: string, type?: 'phone' | 'email') => Promise<{ success: boolean; otpPreview?: string; error?: string }>;
   verifyOtp: (params: {
     identifier: string;
@@ -58,6 +70,8 @@ const AuthContext = createContext<AuthContextType>({
   authModalMode: 'signin',
   openAuthModal: () => {},
   closeAuthModal: () => {},
+  login: async () => ({ success: false, error: 'Not initialized' }),
+  register: async () => ({ success: false, error: 'Not initialized' }),
   sendOtp: async () => ({ success: false, error: 'Not initialized' }),
   verifyOtp: async () => ({ success: false, error: 'Not initialized' }),
   loginWithGoogle: async () => ({ user: null, error: 'Not initialized' }),
@@ -136,6 +150,72 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     return () => unsubscribe();
   }, []);
+
+  const login = async (email: string, password: string) => {
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || 'Sign in failed.' };
+      }
+
+      if (data.profile && data.token) {
+        setProfile(data.profile);
+        setToken(data.token);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('agrove_auth_token', data.token);
+          localStorage.setItem('agrove_user_profile', JSON.stringify(data.profile));
+        }
+        setIsAuthModalOpen(false);
+      }
+
+      return { success: true, profile: data.profile };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Error signing in.' };
+    }
+  };
+
+  const register = async (params: {
+    email: string;
+    password: string;
+    fullName: string;
+    phone?: string;
+    role?: 'CUSTOMER' | 'DEALER';
+    companyName?: string;
+    gstin?: string;
+    city?: string;
+    state?: string;
+  }) => {
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || 'Registration failed.' };
+      }
+
+      if (data.profile && data.token) {
+        setProfile(data.profile);
+        setToken(data.token);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('agrove_auth_token', data.token);
+          localStorage.setItem('agrove_user_profile', JSON.stringify(data.profile));
+        }
+        setIsAuthModalOpen(false);
+      }
+
+      return { success: true, profile: data.profile };
+    } catch (err: any) {
+      return { success: false, error: err.message || 'Error registering account.' };
+    }
+  };
 
   const sendOtp = async (identifier: string, type: 'phone' | 'email' = 'phone') => {
     try {
@@ -271,6 +351,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         authModalMode,
         openAuthModal,
         closeAuthModal,
+        login,
+        register,
         sendOtp,
         verifyOtp,
         loginWithGoogle,
