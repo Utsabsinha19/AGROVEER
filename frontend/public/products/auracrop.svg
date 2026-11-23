@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGlow5" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3D3410" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#102C22" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0A1C16"/>
+    </radialGradient>
+    <linearGradient id="canisterBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D2814"/>
+      <stop offset="50%" stop-color="#18150A"/>
+      <stop offset="100%" stop-color="#0A1C16"/>
+    </linearGradient>
+    <linearGradient id="solarGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bgGlow5)"/>
+  <ellipse cx="400" cy="680" rx="220" ry="34" fill="#040D0A" opacity="0.85"/>
+  <ellipse cx="400" cy="675" rx="150" ry="18" fill="#FBBF24" opacity="0.25"/>
+
+  <!-- Solar Rays in background -->
+  <g stroke="#FCD34D" stroke-opacity="0.1" stroke-width="2">
+    <line x1="400" y1="400" x2="200" y2="200"/>
+    <line x1="400" y1="400" x2="600" y2="200"/>
+    <line x1="400" y1="400" x2="180" y2="400"/>
+    <line x1="400" y1="400" x2="620" y2="400"/>
+  </g>
+
+  <!-- Heavy Duty Canister Body with Integrated Handle -->
+  <path d="M 270 300 Q 270 260 310 260 L 490 260 Q 530 260 530 300 L 530 630 Q 530 650 500 650 L 300 650 Q 270 650 270 630 Z" fill="url(#canisterBody)" stroke="#F59E0B" stroke-opacity="0.3" stroke-width="2"/>
+
+  <!-- Top Molded Carrying Handle -->
+  <path d="M 320 260 L 320 180 Q 320 160 340 160 L 460 160 Q 480 160 480 180 L 480 260 Z" fill="url(#canisterBody)" stroke="#C5A880" stroke-width="2"/>
+  <rect x="350" y="180" width="100" height="45" rx="10" fill="#0A1C16"/>
+
+  <!-- Precision Spout Cap -->
+  <rect x="440" y="220" width="55" height="40" rx="6" fill="#F59E0B"/>
+
+  <!-- Photonic Core Indicator Window -->
+  <rect x="300" y="380" width="200" height="180" rx="16" fill="url(#solarGlow)"/>
+  
+  <!-- Label Overlay -->
+  <rect x="315" y="395" width="170" height="150" rx="12" fill="#0A1C16" fill-opacity="0.95" stroke="#F59E0B" stroke-width="1.5"/>
+  <circle cx="400" cy="435" r="18" fill="#FCD34D"/>
+  <text x="400" y="480" font-family="serif" font-size="14" font-weight="bold" fill="#E9E1CC" text-anchor="middle" letter-spacing="1">AGROVÉ</text>
+  <text x="400" y="500" font-family="sans-serif" font-size="9" font-weight="bold" fill="#FCD34D" text-anchor="middle" letter-spacing="1.5">AURACROP™</text>
+  <text x="400" y="515" font-family="sans-serif" font-size="7" fill="#C5A880" text-anchor="middle">PHOTONIC CATALYST</text>
+</svg>
+

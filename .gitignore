@@ -1,0 +1,45 @@
+# ==============================================================================
+# Git Ignore Configuration for AGROVÉ (Full Stack Next.js + Express)
+# ==============================================================================
+
+# Critical Security: NEVER commit environment files or credentials
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.local
+frontend/.env.*
+
+# Dependencies
+node_modules/
+*/node_modules/
+.pnp
+.pnp.js
+
+# Build Artifacts
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+# Logs & Runtime Dumps
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+*.pem
+.vscode/
+.idea/
+
+.neon

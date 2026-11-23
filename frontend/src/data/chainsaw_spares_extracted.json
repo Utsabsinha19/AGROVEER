@@ -1,0 +1,88 @@
+{
+  "sourceDocument": "CHAIN PRICE LIST_14.11.2026.pdf",
+  "documentDate": "14.11.2026",
+  "extractedTotal": 5,
+  "extractedAt": "2026-11-18T18:41:00+05:30",
+  "notes": [
+    "1. Relevant discount applicable on the price mentioned",
+    "2. Kindly mention product code or serial No. while placing order",
+    "3. Precision alloy steel, German-grade chrome plating, hardened rivet bearings"
+  ],
+  "items": [
+    {
+      "srNo": 1,
+      "productCode": "AI18-SIL",
+      "itemName": "18\" SAWKING CHAIN SILVER FULL CHISEL",
+      "referenceImage": "/images/spares/chainsaw/chain_sr1_ai18_sil.png",
+      "listPriceExclGst": 380.0,
+      "listPriceFormatted": "₹380 + 18% GST",
+      "demand": "HIGH",
+      "stockStatus": "IN_STOCK",
+      "subCategory": "18\" Sawking Chains",
+      "packaging": "Color Box Packing",
+      "gstPercent": 18.0,
+      "totalPriceInclGst": 448.4,
+      "sourcePdf": "CHAIN PRICE LIST_14.11.2026.pdf"
+    },
+    {
+      "srNo": 2,
+      "productCode": "AI22-SIL",
+      "itemName": "22\" SAWKING CHAIN SILVER FULL CHISEL",
+      "referenceImage": "/images/spares/chainsaw/chain_sr2_ai22_sil.png",
+      "listPriceExclGst": 450.0,
+      "listPriceFormatted": "₹450 + 18% GST",
+      "demand": "HIGH",
+      "stockStatus": "IN_STOCK",
+      "subCategory": "22\" Sawking Chains",
+      "packaging": "Color Box Packing",
+      "gstPercent": 18.0,
+      "totalPriceInclGst": 531.0,
+      "sourcePdf": "CHAIN PRICE LIST_14.11.2026.pdf"
+    },
+    {
+      "srNo": 3,
+      "productCode": "AI18-GLD",
+      "itemName": "18\" SAWKING CHAIN GOLD FULL CHISEL",
+      "referenceImage": "/images/spares/chainsaw/chain_sr3_ai18_gld.png",
+      "listPriceExclGst": 420.0,
+      "listPriceFormatted": "₹420 + 18% GST",
+      "demand": "NEW LAUNCH",
+      "stockStatus": "IN_STOCK",
+      "subCategory": "Titanium Gold TiN Series",
+      "packaging": "Sawking Gold Box Packing",
+      "gstPercent": 18.0,
+      "totalPriceInclGst": 495.6,
+      "sourcePdf": "CHAIN PRICE LIST_14.11.2026.pdf"
+    },
+    {
+      "srNo": 4,
+      "productCode": "AI22-DBLLNK",
+      "itemName": "22 INCH DOUBLE LINK METAL BOX",
+      "referenceImage": "/images/spares/chainsaw/chain_sr4_ai22_dbllnk.png",
+      "listPriceExclGst": 560.0,
+      "listPriceFormatted": "₹560 + 18% GST",
+      "demand": "HIGH",
+      "stockStatus": "IN_STOCK",
+      "subCategory": "Double Link Heavy Duty",
+      "packaging": "Premium Metal Box Packing",
+      "gstPercent": 18.0,
+      "totalPriceInclGst": 660.8,
+      "sourcePdf": "CHAIN PRICE LIST_14.11.2026.pdf"
+    },
+    {
+      "srNo": 5,
+      "productCode": "AI22-RMX",
+      "itemName": "22\" RMX CHAIN 10 DEGREE CUT",
+      "referenceImage": "/images/spares/chainsaw/chain_sr5_ai22_rmx.png",
+      "listPriceExclGst": 920.0,
+      "listPriceFormatted": "₹920 + 18% GST",
+      "demand": "HIGH",
+      "stockStatus": "IN_STOCK",
+      "subCategory": "RMX 10° Ripping Chains",
+      "packaging": "Hardened RMX Box Packing",
+      "gstPercent": 18.0,
+      "totalPriceInclGst": 1085.6,
+      "sourcePdf": "CHAIN PRICE LIST_14.11.2026.pdf"
+    }
+  ]
+}

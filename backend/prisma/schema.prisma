@@ -1,0 +1,259 @@
+// ==============================================================================
+// ARVEER IMPEX / AGROVÉ — NEON POSTGRESQL PRISMA 7 SCHEMA
+// Scalable Architecture: Profiles, Products, Inventory, Orders, Coupons, Reports
+// ==============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  CUSTOMER
+  DEALER
+  WAREHOUSE_STAFF
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  ADVANCE_PAID_CONFIRMED
+  PAID_FULL_CONFIRMED
+  PACKED_SERIALS_ASSIGNED
+  DISPATCHED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentType {
+  FULL_PAYMENT
+  TWO_STAGE_ADVANCE
+  NEFT_RTGS_OFFLINE
+  CASH_ON_DELIVERY
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIAL_ADVANCE_PAID
+  PAID_IN_FULL
+  REFUNDED
+  FAILED
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+// ------------------------------------------------------------------------------
+// 1. User Profiles (Synced from Firebase Auth)
+// ------------------------------------------------------------------------------
+model Profile {
+  id              String      @id @default(uuid())
+  firebaseUid     String      @unique
+  email           String?     @unique
+  phone           String?     @unique
+  fullName        String
+  role            Role        @default(CUSTOMER)
+  companyName     String?
+  gstin           String?
+  billingAddress  String?
+  shippingAddress String?
+  city            String?
+  state           String?
+  pincode         String?
+  profileImageUrl String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  orders          Order[]
+
+  @@index([firebaseUid])
+  @@index([phone])
+}
+
+// ------------------------------------------------------------------------------
+// 2. Products Master Catalog
+// ------------------------------------------------------------------------------
+model Product {
+  id               String            @id
+  name             String
+  sku              String            @unique
+  category         String
+  hsnCode          String
+  gstRate          Float             @default(18.0)
+  priceExGst       Float
+  mrp              Float
+  minOrderQty      Int               @default(1)
+  inStock          Boolean           @default(true)
+  inventoryCount   Int               @default(100)
+  lowStockAlert    Int               @default(10)
+  images           String[]
+  model3dUrl       String?
+  has3dViewer      Boolean           @default(false)
+  specifications   Json?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  orderItems       OrderItem[]
+  warehouseSerials WarehouseSerial[]
+  inventoryLogs    InventoryLog[]
+
+  @@index([sku])
+  @@index([category])
+}
+
+// ------------------------------------------------------------------------------
+// 3. Inventory Stock Movement Logs
+// ------------------------------------------------------------------------------
+model InventoryLog {
+  id            String   @id @default(uuid())
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  previousStock Int
+  newStock      Int
+  changeAmount  Int
+  changeType    String   // PURCHASE_ORDER, QC_DISPATCH, MANUAL_CORRECTION, RESTOCK
+  reason        String?
+  performedBy   String?  // Admin or Staff identifier
+  createdAt     DateTime @default(now())
+
+  @@index([productId])
+}
+
+// ------------------------------------------------------------------------------
+// 4. Commercial & Retail Orders
+// ------------------------------------------------------------------------------
+model Order {
+  id                    String            @id @default(uuid())
+  orderNumber           String            @unique
+  profileId             String?
+  profile               Profile?          @relation(fields: [profileId], references: [id])
+  customerName          String
+  customerPhone         String
+  customerEmail         String?
+  customerGstNumber     String?
+  shippingAddress       String
+  destinationGodown     String?
+  city                  String
+  state                 String
+  pincode               String
+  status                OrderStatus       @default(PENDING_PAYMENT)
+  paymentType           PaymentType       @default(FULL_PAYMENT)
+  paymentStatus         PaymentStatus     @default(PENDING)
+  totalTaxableAmount    Float
+  totalGstAmount        Float
+  grandTotalAmount      Float
+  advancePaidAmount     Float             @default(0)
+  balanceDueAmount      Float             @default(0)
+  couponCode            String?
+  discountAmount        Float             @default(0)
+  
+  // External Integration References
+  razorpayOrderId       String?
+  razorpayPaymentId     String?
+  shiprocketShipmentId  String?
+  shiprocketAwbCode     String?
+  carrierName           String?
+  awbOrLrNumber         String?
+  biltyUrl              String?
+  trackingUrl           String?
+  dispatchedAt          DateTime?
+
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+  items                 OrderItem[]
+  warehouseSerials      WarehouseSerial[]
+
+  @@index([customerPhone])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+// ------------------------------------------------------------------------------
+// 5. Order Line Items
+// ------------------------------------------------------------------------------
+model OrderItem {
+  id           String   @id @default(uuid())
+  orderId      String
+  order        Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id])
+  sku          String
+  productName  String
+  hsnCode      String
+  gstRate      Float
+  quantity     Int
+  unitPrice    Float
+  totalTaxable Float
+  totalGst     Float
+  grandTotal   Float
+}
+
+// ------------------------------------------------------------------------------
+// 6. Warehouse Laser Serial Verification (Anti-Fraud & Warranty)
+// ------------------------------------------------------------------------------
+model WarehouseSerial {
+  id                String    @id @default(uuid())
+  serialNumber      String    @unique
+  orderId           String
+  order             Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId         String
+  product           Product   @relation(fields: [productId], references: [id])
+  scannedAt         DateTime  @default(now())
+  warrantyMonths    Int       @default(6)
+  warrantyExpiresAt DateTime?
+
+  @@index([serialNumber])
+  @@index([orderId])
+}
+
+// ------------------------------------------------------------------------------
+// 7. B2B & Retail Coupons / Trade Discounts
+// ------------------------------------------------------------------------------
+model Coupon {
+  id                String       @id @default(uuid())
+  code              String       @unique
+  description       String?
+  discountType      DiscountType @default(PERCENTAGE)
+  discountValue     Float        // e.g. 10 for 10% or 500 for ₹500
+  minOrderValue     Float        @default(0)
+  maxDiscountAmount Float?
+  usageLimit        Int          @default(100)
+  timesUsed         Int          @default(0)
+  isActive          Boolean      @default(true)
+  validFrom         DateTime     @default(now())
+  validUntil        DateTime?
+  createdAt         DateTime     @default(now())
+
+  @@index([code])
+}
+
+// ------------------------------------------------------------------------------
+// 8. Management Reports & Audits
+// ------------------------------------------------------------------------------
+model Report {
+  id          String   @id @default(uuid())
+  reportType  String   // SALES_SUMMARY, GST_RECONCILIATION, INVENTORY_AUDIT, LOGISTICS_SLA
+  title       String
+  summary     String
+  dataJson    Json
+  generatedBy String   @default("SYSTEM")
+  createdAt   DateTime @default(now())
+}
+
+// ------------------------------------------------------------------------------
+// 9. Real-Time OTP Verification (Neon Cloud Auth)
+// ------------------------------------------------------------------------------
+model OtpVerification {
+  id         String   @id @default(uuid())
+  identifier String   // Phone number or Email address
+  otpCode    String
+  attempts   Int      @default(0)
+  isVerified Boolean  @default(false)
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([identifier])
+}

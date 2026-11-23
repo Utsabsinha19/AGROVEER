@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGlow6" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#153628" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#102C22" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0A1C16"/>
+    </radialGradient>
+    <linearGradient id="titaniumMetal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94A3B8"/>
+      <stop offset="50%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#64748B"/>
+    </linearGradient>
+    <linearGradient id="goldAccents" x1="0%" y1="0%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#E9E1CC"/>
+      <stop offset="50%" stop-color="#C5A880"/>
+      <stop offset="100%" stop-color="#8C7355"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bgGlow6)"/>
+  <ellipse cx="400" cy="710" rx="180" ry="24" fill="#040D0A" opacity="0.85"/>
+  <ellipse cx="400" cy="705" rx="100" ry="12" fill="#38BDF8" opacity="0.3"/>
+
+  <!-- High-Tech IoT Head Unit with Solar Collector -->
+  <rect x="330" y="160" width="140" height="90" rx="18" fill="#1C241F" stroke="#C5A880" stroke-width="2"/>
+  
+  <!-- Solar Panel Grid on Head -->
+  <rect x="345" y="175" width="110" height="35" rx="6" fill="#0F172A" stroke="#38BDF8" stroke-width="1"/>
+  <line x1="380" y1="175" x2="380" y2="210" stroke="#38BDF8" stroke-width="1"/>
+  <line x1="420" y1="175" x2="420" y2="210" stroke="#38BDF8" stroke-width="1"/>
+
+  <!-- Telemetry LED Activity Beacon -->
+  <circle cx="400" cy="230" r="5" fill="#34D399"/>
+  <circle cx="400" cy="230" r="10" fill="#34D399" opacity="0.3"/>
+
+  <!-- Titanium Shaft Probe Body (60cm) -->
+  <rect x="382" y="250" width="36" height="430" rx="6" fill="url(#titaniumMetal)"/>
+
+  <!-- Multi-Depth Capacitive Sensor Rings -->
+  <!-- 10cm -->
+  <rect x="380" y="300" width="40" height="14" rx="2" fill="url(#goldAccents)"/>
+  <!-- 20cm -->
+  <rect x="380" y="370" width="40" height="14" rx="2" fill="url(#goldAccents)"/>
+  <!-- 30cm -->
+  <rect x="380" y="440" width="40" height="14" rx="2" fill="url(#goldAccents)"/>
+  <!-- 40cm -->
+  <rect x="380" y="510" width="40" height="14" rx="2" fill="url(#goldAccents)"/>
+  <!-- 50cm -->
+  <rect x="380" y="580" width="40" height="14" rx="2" fill="url(#goldAccents)"/>
+  <!-- 60cm -->
+  <rect x="380" y="650" width="40" height="14" rx="2" fill="url(#goldAccents)"/>
+
+  <!-- Soil Penetration Tip -->
+  <path d="M 382 680 L 400 710 L 418 680 Z" fill="#475569"/>
+
+  <!-- Depth Measurement Tick Marks -->
+  <text x="365" y="312" font-family="monospace" font-size="10" fill="#C5A880" text-anchor="end">10cm</text>
+  <text x="365" y="382" font-family="monospace" font-size="10" fill="#C5A880" text-anchor="end">20cm</text>
+  <text x="365" y="452" font-family="monospace" font-size="10" fill="#C5A880" text-anchor="end">30cm</text>
+  <text x="365" y="522" font-family="monospace" font-size="10" fill="#C5A880" text-anchor="end">40cm</text>
+  <text x="365" y="592" font-family="monospace" font-size="10" fill="#C5A880" text-anchor="end">50cm</text>
+  <text x="365" y="662" font-family="monospace" font-size="10" fill="#C5A880" text-anchor="end">60cm</text>
+
+  <!-- Wireless LoRaWAN / 4G Broadcast waves -->
+  <path d="M 490 190 Q 520 205 490 220" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 505 180 Q 545 205 505 230" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Floating Specification Tag -->
+  <g transform="translate(540, 360)">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#0A1C16" stroke="#38BDF8" stroke-width="1.5"/>
+    <text x="15" y="25" font-family="serif" font-size="13" font-weight="bold" fill="#E9E1CC">AGROVÉ</text>
+    <text x="15" y="42" font-family="sans-serif" font-size="9" font-weight="bold" fill="#38BDF8">TERRASENSE™</text>
+    <text x="15" y="58" font-family="sans-serif" font-size="7.5" fill="#C5A880">MULTI-DEPTH IOT SENTINEL</text>
+    <text x="15" y="75" font-family="monospace" font-size="7" fill="#6EE7B7">Moisture • EC • Temp • NPK</text>
+  </g>
+</svg>
+

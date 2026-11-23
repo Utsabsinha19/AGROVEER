@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;500;600;700;800&family=Noto+Sans+Gujarati:wght@400;500;600;700;800&family=Noto+Sans+Telugu:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F7F5F0; /* Warm Field Sand */
+  --foreground: #141A17; /* Cast Steel Dark */
+  --header-nav: #102C22; /* Deep Forest Slate */
+  --surface-dark: #141A17; /* Cast Steel Dark */
+  --surface-light: #F7F5F0; /* Warm Field Sand */
+  --cta-primary: #24583D; /* Harvest Botanical Green */
+  --cta-secondary: #A6C96A; /* Fresh Leaf Lime */
+  --whatsapp: #25D366; /* WhatsApp Green */
+  --sawking-gold: #D4AF37; /* Chisel Gold */
+  --agroveer-vermilion: #D64527; /* Engine Vermilion */
+  --tech-border: rgba(166, 201, 106, 0.15); /* Muted Moss / Steel */
+}
+
+body {
+  color: #141A17;
+  background-color: #F7F5F0;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Regional Indian Typography & Font Transformations */
+[data-lang="hi"], [data-lang="hi"] * {
+  font-family: 'Mukta', 'Noto Sans Devanagari', var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-lang="mr"], [data-lang="mr"] * {
+  font-family: 'Mukta', 'Noto Sans Devanagari', var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-lang="pa"], [data-lang="pa"] * {
+  font-family: 'Noto Sans Gurmukhi', var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-lang="gu"], [data-lang="gu"] * {
+  font-family: 'Noto Sans Gujarati', var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-lang="te"], [data-lang="te"] * {
+  font-family: 'Noto Sans Telugu', var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Ensure font-serif scales gracefully in non-latin scripts */
+[data-lang="hi"] .font-serif,
+[data-lang="mr"] .font-serif,
+[data-lang="pa"] .font-serif,
+[data-lang="gu"] .font-serif,
+[data-lang="te"] .font-serif {
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: normal;
+}
+
+::selection {
+  background-color: #A6C96A;
+  color: #102C22;
+}
+
+/* Custom technical soft scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #24583D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1B4731;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Radial dark vignette strictly for the 3D Hero scene */
+.bg-radial-vignette {
+  background: radial-gradient(circle at center, transparent 35%, rgba(16, 44, 34, 0.95) 100%);
+}
+
+/* Technical rules and borders utility */
+.border-technical {
+  border-color: rgba(166, 201, 106, 0.15);
+}
+
+.bg-surface-dark {
+  background-color: #141A17;
+}
+
+.bg-surface-light {
+  background-color: #F7F5F0;
+}
+
+/* Brand Badge Utilities */
+.badge-sawking-gold {
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.badge-agroveer-vermilion {
+  background-color: rgba(214, 69, 39, 0.12);
+  color: #D64527;
+  border: 1px solid rgba(214, 69, 39, 0.35);
+}
+
+.btn-whatsapp-direct {
+  background-color: #25D366;
+  color: #FFFFFF;
+}
+
+.btn-whatsapp-direct:hover {
+  background-color: #1EBE5D;
+}
+
+/* Fluid Responsive Image & Media Rules */
+img, svg, video, canvas {
+  max-width: 100%;
+}
+
+/* Responsive Table Wrapper Utility */
+.table-responsive-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch-friendly Tap Targets on Touch Devices */
+@media (pointer: coarse) {
+  button, a {
+    min-height: 38px;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}

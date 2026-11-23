@@ -1,0 +1,22 @@
+{
+  "open_source_earth_auger": {
+    "cloudinaryUrl": "https://res.cloudinary.com/ct7edeoo/image/upload/v1794724082/agrove_machinery/open_source/open_source_earth_auger.jpg",
+    "localPath": "/images/products/open-source-earth-auger.jpg"
+  },
+  "open_source_water_pump": {
+    "cloudinaryUrl": "https://res.cloudinary.com/ct7edeoo/image/upload/v1794724083/agrove_machinery/open_source/open_source_water_pump.jpg",
+    "localPath": "/images/products/open-source-water-pump.jpg"
+  },
+  "open_source_petrol_engine": {
+    "cloudinaryUrl": "https://res.cloudinary.com/ct7edeoo/image/upload/v1794724084/agrove_machinery/open_source/open_source_petrol_engine.jpg",
+    "localPath": "/images/products/open-source-petrol-engine.jpg"
+  },
+  "open_source_chainsaw_chain": {
+    "cloudinaryUrl": "https://res.cloudinary.com/ct7edeoo/image/upload/v1794724086/agrove_machinery/open_source/open_source_chainsaw_chain.jpg",
+    "localPath": "/images/products/open-source-chainsaw-chain.jpg"
+  },
+  "open_source_cordless_bag_closer": {
+    "cloudinaryUrl": "https://res.cloudinary.com/ct7edeoo/image/upload/v1794724087/agrove_machinery/open_source/open_source_cordless_bag_closer.jpg",
+    "localPath": "/images/products/open-source-cordless-bag-closer.jpg"
+  }
+}

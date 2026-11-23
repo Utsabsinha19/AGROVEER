@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGlow4" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1A3A2C" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#102C22" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0A1C16"/>
+    </radialGradient>
+    <linearGradient id="bioFlagon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#24583D"/>
+      <stop offset="60%" stop-color="#102C22"/>
+      <stop offset="100%" stop-color="#05140F"/>
+    </linearGradient>
+    <linearGradient id="nitrogenGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#6EE7B7" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bgGlow4)"/>
+  <ellipse cx="400" cy="680" rx="210" ry="34" fill="#040D0A" opacity="0.85"/>
+  <ellipse cx="400" cy="675" rx="140" ry="16" fill="#10B981" opacity="0.25"/>
+
+  <!-- Atmospheric Nitrogen Molecules in ambient space -->
+  <g opacity="0.3">
+    <circle cx="220" cy="280" r="14" fill="#6EE7B7"/>
+    <circle cx="240" cy="270" r="14" fill="#6EE7B7"/>
+    <line x1="220" y1="280" x2="240" y2="270" stroke="#FFFFFF" stroke-width="3"/>
+    
+    <circle cx="580" cy="320" r="12" fill="#6EE7B7"/>
+    <circle cx="600" cy="310" r="12" fill="#6EE7B7"/>
+    <line x1="580" y1="320" x2="600" y2="310" stroke="#FFFFFF" stroke-width="3"/>
+  </g>
+
+  <!-- High-Titer Biological Flagon -->
+  <path d="M 330 250 L 330 320 Q 280 370 280 470 L 280 620 Q 280 640 310 640 L 490 640 Q 520 640 520 620 L 520 470 Q 520 370 470 320 L 470 250 Z" fill="url(#bioFlagon)" stroke="#10B981" stroke-opacity="0.3" stroke-width="2"/>
+  
+  <!-- Active Diazotrophic Liquid Core -->
+  <path d="M 300 480 L 300 610 Q 300 625 320 625 L 480 625 Q 500 625 500 610 L 500 480 Z" fill="url(#nitrogenGlow)"/>
+
+  <!-- Neck & Aluminum Stopper -->
+  <rect x="340" y="190" width="120" height="60" rx="6" fill="#C5A880"/>
+  <rect x="355" y="150" width="90" height="40" rx="6" fill="#1C241F" stroke="#C5A880" stroke-width="1.5"/>
+
+  <!-- Center Label -->
+  <rect x="325" y="380" width="150" height="150" rx="14" fill="#0A1C16" stroke="#C5A880" stroke-width="1.5"/>
+  <text x="400" y="415" font-family="sans-serif" font-size="28" font-weight="bold" fill="#6EE7B7" text-anchor="middle">N₂</text>
+  <text x="400" y="445" font-family="serif" font-size="14" font-weight="bold" fill="#E9E1CC" text-anchor="middle" letter-spacing="1">AGROVÉ</text>
+  <text x="400" y="468" font-family="sans-serif" font-size="9" font-weight="bold" fill="#A6C96A" text-anchor="middle" letter-spacing="1.5">BIONOX™</text>
+  <text x="400" y="488" font-family="sans-serif" font-size="7" fill="#C5A880" text-anchor="middle">NITROGEN FIXATION</text>
+</svg>
+
