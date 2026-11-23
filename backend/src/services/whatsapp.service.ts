@@ -1,4 +1,5 @@
 import { WhatsAppInquiryRequest, Order } from '../types/index.js';
+import { credentials } from '../config/credentials.js';
 
 const AGROVE_WHATSAPP_PHONE = '918004922476';
 
@@ -64,7 +65,7 @@ export class WhatsAppService {
           `Namaste ${order.customer.fullName}, thank you for choosing Arveer Impex.\n\n` +
           `Your order #${order.id} for ${qty}x ${prodName} has been confirmed.\n` +
           `Total Value: ₹${order.totalINR.toLocaleString('en-IN')} (Incl. GST).\n\n` +
-          `Download your official GST Tax Invoice here: http://localhost:3000/order-success/${order.id}\n` +
+          `Download your official GST Tax Invoice here: ${credentials.clientUrl}/order-success/${order.id}\n` +
           `Your machinery is now being prepared for bench testing and packing.`;
         break;
       }
@@ -85,7 +86,7 @@ export class WhatsAppService {
         const carrier = order.logistics.carrier || customData?.carrierName || 'VRL Logistics Ltd.';
         const lr = order.logistics.lrNumber || customData?.lrNumber || 'LR-MH-892104';
         const godown = order.logistics.destinationGodownAddress || `${order.customer.city}, ${order.customer.state}`;
-        const lrUrl = order.logistics.lrBiltyDocumentUrl || customData?.lrImageUrl || `http://localhost:3000/order-success/${order.id}#bilty`;
+        const lrUrl = order.logistics.lrBiltyDocumentUrl || customData?.lrImageUrl || `${credentials.clientUrl}/order-success/${order.id}#bilty`;
         message = 
           `Consignment Dispatched!\n\n` +
           `Order #${order.id} has been handed over to ${carrier}.\n` +

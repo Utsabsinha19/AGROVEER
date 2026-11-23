@@ -121,7 +121,7 @@ export function AdminClient() {
   const handleScanSerial = async (orderId: string, productId: string) => {
     setWarehouseNotice(null);
     try {
-      const res = await fetch('http://localhost:5000/api/warehouse/scan-serial', {
+      const res = await fetch('/api/warehouse/scan-serial', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -157,7 +157,7 @@ export function AdminClient() {
   const handleRecordDispatch = async (orderId: string) => {
     setWarehouseNotice(null);
     try {
-      const res = await fetch('http://localhost:5000/api/warehouse/dispatch', {
+      const res = await fetch('/api/warehouse/dispatch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

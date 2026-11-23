@@ -55,7 +55,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
       }
 
       // 2. Try fetching from backend
-      fetch(`http://localhost:5000/api/orders/${orderId}`)
+      fetch(`/api/orders/${orderId}`)
         .then((res) => res.json())
         .then((json) => {
           if (json.success && json.data) {

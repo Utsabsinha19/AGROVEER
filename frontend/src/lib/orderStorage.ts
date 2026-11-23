@@ -112,7 +112,19 @@ export interface StoredOrder {
 
 const STORAGE_KEY_ORDERS = 'agrove_commercial_orders';
 const STORAGE_KEY_ORDER_PREFIX = 'order_';
-const BACKEND_API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
+export const getBackendApiUrl = (): string => {
+  // 1. Server-side in Next.js (via Vercel service binding BACKEND_URL)
+  if (typeof window === 'undefined' && process.env.BACKEND_URL) {
+    return new URL('/api', process.env.BACKEND_URL).toString().replace(/\/$/, '');
+  }
+  // 2. Client-side in browser: relative path routed via Vercel rewrites
+  if (typeof window !== 'undefined') {
+    return (process.env.NEXT_PUBLIC_API_URL || '/api').replace(/\/$/, '');
+  }
+  // 3. Local development fallback
+  return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+};
 
 export const orderStorage = {
   // Save order to localStorage and sync with backend Express API
@@ -134,7 +146,8 @@ export const orderStorage = {
 
     // 3. Sync to backend API asynchronously
     try {
-      await fetch(`${BACKEND_API_URL}/orders`, {
+      const backendApi = getBackendApiUrl();
+      await fetch(`${backendApi}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -243,7 +256,8 @@ export const orderStorage = {
 
     // Sync to backend asynchronously
     try {
-      fetch(`${BACKEND_API_URL}/orders/${id}/status`, {
+      const backendApi = getBackendApiUrl();
+      fetch(`${backendApi}/orders/${id}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })
