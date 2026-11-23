@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { 
-  ShoppingBag, 
-  Menu, 
-  X, 
+import {
+  ShoppingBag,
+  Menu,
+  X,
   FileText,
   MessageCircle,
   Heart,
@@ -50,14 +50,14 @@ export const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full shadow-lg bg-[#102C22] select-none" style={{ backgroundColor: '#102C22' }}>
-      
+
       {/* Top Utility & Announcement Bar in Deep Forest Slate (#0B1E17) */}
-      <div 
+      <div
         className="w-full bg-[#0B1E17] text-[#F7F5F0] text-[10px] sm:text-[11px] font-sans tracking-wider py-1.5 px-3 sm:px-6 lg:px-8 border-b border-[rgba(166,201,106,0.18)]"
         style={{ backgroundColor: '#0B1E17' }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-          
+
           {/* Brand & Distributor Tagline */}
           <div className="flex items-center gap-2 min-w-0">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#A6C96A] animate-pulse shrink-0" />
@@ -93,7 +93,7 @@ export const Navbar = () => {
 
             {/* WhatsApp Direct Sales Link */}
             <a
-              href="https://wa.me/918004922476?text=Hello%20Arveer%20Impex%20Team%2C%20I%20am%20inquiring%20about%20dealership%20terms%2C%20machinery%2C%20or%20spare%20parts."
+              href="https://wa.me/917352210000?text=Hello%20Arveer%20Impex%20Team%2C%20I%20am%20inquiring%20about%20dealership%20terms%2C%20machinery%2C%20or%20spare%20parts."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-[#F7F5F0]/90 hover:text-[#A6C96A] transition-colors font-medium whitespace-nowrap pl-2 border-l border-white/10"
@@ -107,12 +107,12 @@ export const Navbar = () => {
       </div>
 
       {/* Main Full-Width Navigation Bar */}
-      <div 
+      <div
         className="w-full bg-[#102C22] border-b border-[rgba(166,201,106,0.2)]"
         style={{ backgroundColor: '#102C22' }}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-3">
-          
+
           {/* Brand Logo & Distributor Line (Clickable Home Link) */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0" title="Agroveer & Sawking — Arveer Impex Home">
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden bg-[#14261F] flex items-center justify-center border border-[#A6C96A]/40 shadow-sm group-hover:scale-105 transition-transform shrink-0 p-1">
@@ -147,13 +147,11 @@ export const Navbar = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-sans uppercase tracking-wider font-semibold whitespace-nowrap transition-all ${
-                    isDealership ? 'hidden xl:inline-block' : 'inline-block'
-                  } ${
-                    isActive
+                  className={`px-2.5 xl:px-3 py-1.5 rounded-lg text-xs font-sans uppercase tracking-wider font-semibold whitespace-nowrap transition-all ${isDealership ? 'hidden xl:inline-block' : 'inline-block'
+                    } ${isActive
                       ? 'text-[#A6C96A] bg-white/10 font-bold border border-[#A6C96A]/40 shadow-sm'
                       : 'text-white/90 hover:text-[#A6C96A] hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -163,7 +161,7 @@ export const Navbar = () => {
 
           {/* Right Action Suite - Permanently Visible & Anchored */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0 ml-auto lg:ml-0">
-            
+
             {/* Mobile / Small Screen Location Trigger */}
             <button
               type="button"
@@ -257,12 +255,12 @@ export const Navbar = () => {
 
         {/* Mobile Dropdown Panel */}
         {mobileMenuOpen && (
-          <div 
+          <div
             className="lg:hidden w-full bg-[#0E221B] border-t border-[rgba(166,201,106,0.2)] px-4 py-5 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200 max-h-[calc(100vh-64px)] overflow-y-auto overscroll-contain"
             style={{ backgroundColor: '#0E221B' }}
           >
             <div className="max-w-7xl mx-auto flex flex-col space-y-2.5">
-              
+
               {/* Mobile User Profile / Auth Bar */}
               {profile ? (
                 <div className="p-3 rounded-2xl bg-[#14261F] border border-[rgba(166,201,106,0.25)] flex items-center justify-between mb-1">
@@ -324,9 +322,8 @@ export const Navbar = () => {
                 <Link
                   href="/"
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-3.5 py-2.5 rounded-xl text-xs font-sans uppercase tracking-wider text-[#F7F5F0] hover:bg-white/10 transition-colors font-semibold flex items-center justify-between ${
-                    pathname === '/' ? 'bg-[#24583D]/60 text-[#A6C96A] font-bold' : ''
-                  }`}
+                  className={`px-3.5 py-2.5 rounded-xl text-xs font-sans uppercase tracking-wider text-[#F7F5F0] hover:bg-white/10 transition-colors font-semibold flex items-center justify-between ${pathname === '/' ? 'bg-[#24583D]/60 text-[#A6C96A] font-bold' : ''
+                    }`}
                 >
                   <div className="flex items-center gap-2.5">
                     <Home className="w-4 h-4 text-[#A6C96A]" />
@@ -343,9 +340,8 @@ export const Navbar = () => {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`px-3.5 py-2.5 rounded-xl text-xs font-sans uppercase tracking-wider text-[#F7F5F0] hover:bg-white/10 transition-colors font-semibold flex items-center justify-between ${
-                        isActive ? 'bg-[#24583D]/60 text-[#A6C96A] font-bold' : ''
-                      }`}
+                      className={`px-3.5 py-2.5 rounded-xl text-xs font-sans uppercase tracking-wider text-[#F7F5F0] hover:bg-white/10 transition-colors font-semibold flex items-center justify-between ${isActive ? 'bg-[#24583D]/60 text-[#A6C96A] font-bold' : ''
+                        }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <Icon className="w-4 h-4 text-[#A6C96A]" />
@@ -411,7 +407,7 @@ export const Navbar = () => {
                 </button>
 
                 <a
-                  href="https://wa.me/918004922476"
+                  href="https://wa.me/917352210000"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm cursor-pointer"

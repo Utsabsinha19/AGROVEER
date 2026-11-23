@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  CheckCircle2, 
-  ArrowRight, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  CheckCircle2,
+  ArrowRight,
   ShieldCheck,
   MessageCircle,
   Truck,
@@ -55,7 +55,7 @@ export default function ContactPage() {
     }
   };
 
-  const whatsappInquiryUrl = `https://wa.me/918004922476?text=${encodeURIComponent(
+  const whatsappInquiryUrl = `https://wa.me/917352210000?text=${encodeURIComponent(
     `*Commercial Procurement Inquiry — Arveer Impex*\n` +
     `• Name: ${formData.name || 'Valued Buyer'}\n` +
     `• Firm/Shop: ${formData.firmName || 'N/A'}\n` +
@@ -97,7 +97,7 @@ export default function ContactPage() {
                 <p className="text-[#4F5D54] text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
                   Our regional distribution manager for <strong>{formData.cityState || 'your territory'}</strong> has received your dispatch schedule request and will connect via WhatsApp / Call within 4 business hours.
                 </p>
-                
+
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
                     href={whatsappInquiryUrl}

@@ -3,20 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  ShoppingBag, 
-  Truck, 
-  ShieldCheck, 
-  FileText, 
-  CheckCircle2, 
-  Clock, 
-  Printer, 
-  User, 
-  Building2, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  ExternalLink, 
+import {
+  ShoppingBag,
+  Truck,
+  ShieldCheck,
+  FileText,
+  CheckCircle2,
+  Clock,
+  Printer,
+  User,
+  Building2,
+  MapPin,
+  Phone,
+  Mail,
+  ExternalLink,
   Download,
   AlertCircle,
   RefreshCw,
@@ -234,11 +234,11 @@ export function AccountClient() {
   return (
     <div className="pt-28 sm:pt-36 pb-24 bg-[#F7F5F0] text-[#141A17] min-h-screen">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Buyer Account Header Card */}
         <div className="p-8 rounded-3xl bg-[#102C22] text-[#F7F5F0] border border-[rgba(166,201,106,0.3)] shadow-xl mb-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-[#A6C96A]/10 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative z-10">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl bg-[#24583D] border border-[#A6C96A]/40 text-[#A6C96A] flex items-center justify-center text-2xl font-bold font-serif shadow-inner shrink-0">
@@ -377,9 +377,8 @@ export function AccountClient() {
         <div className="flex border-b border-[rgba(166,201,106,0.25)] gap-6 mb-8 overflow-x-auto pb-2 scrollbar-none">
           <button
             onClick={() => setActiveTab('orders')}
-            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${
-              activeTab === 'orders' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
-            }`}
+            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${activeTab === 'orders' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
+              }`}
           >
             <ShoppingBag className="w-4 h-4" />
             <span>Active Orders & Tracking ({orders.length})</span>
@@ -388,9 +387,8 @@ export function AccountClient() {
 
           <button
             onClick={() => setActiveTab('warranties')}
-            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${
-              activeTab === 'warranties' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
-            }`}
+            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${activeTab === 'warranties' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
+              }`}
           >
             <ShieldCheck className="w-4 h-4" />
             <span>Registered Warranties</span>
@@ -399,9 +397,8 @@ export function AccountClient() {
 
           <button
             onClick={() => setActiveTab('invoices')}
-            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${
-              activeTab === 'invoices' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
-            }`}
+            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${activeTab === 'invoices' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
+              }`}
           >
             <FileText className="w-4 h-4" />
             <span>Tax Invoices & Bilty</span>
@@ -410,9 +407,8 @@ export function AccountClient() {
 
           <button
             onClick={() => setActiveTab('wishlist')}
-            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${
-              activeTab === 'wishlist' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
-            }`}
+            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${activeTab === 'wishlist' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
+              }`}
           >
             <Heart className={`w-4 h-4 ${wishlistIds.length > 0 ? 'text-[#D64527] fill-[#D64527]' : ''}`} />
             <span>Saved Wishlist ({wishlistIds.length})</span>
@@ -421,9 +417,8 @@ export function AccountClient() {
 
           <button
             onClick={() => setActiveTab('profile')}
-            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${
-              activeTab === 'profile' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
-            }`}
+            className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-2 ${activeTab === 'profile' ? 'text-[#24583D] font-bold' : 'text-[#4F5D54] hover:text-[#141A17]'
+              }`}
           >
             <Mail className="w-4 h-4 text-[#A6C96A]" />
             <span>Buyer Profile & Email Setup</span>
@@ -475,9 +470,8 @@ export function AccountClient() {
                   {/* 4-Step Transition Stepper */}
                   <div className="p-4 rounded-2xl bg-[#F7F5F0] border border-[rgba(166,201,106,0.25)]">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-xs">
-                      <div className={`p-2.5 rounded-xl border ${
-                        true ? 'bg-white border-[#24583D] font-bold text-[#24583D]' : 'bg-transparent text-gray-400'
-                      }`}>
+                      <div className={`p-2.5 rounded-xl border ${true ? 'bg-white border-[#24583D] font-bold text-[#24583D]' : 'bg-transparent text-gray-400'
+                        }`}>
                         <div className="flex items-center justify-center gap-1 mb-1">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#24583D]" />
                           <span className="text-[10px] uppercase font-mono">Step 1</span>
@@ -486,11 +480,10 @@ export function AccountClient() {
                         <div className="text-[10px] text-[#4F5D54]">Payment Secured</div>
                       </div>
 
-                      <div className={`p-2.5 rounded-xl border ${
-                        ['PACKED_SERIALS_ASSIGNED', 'DISPATCHED', 'OUT_FOR_DELIVERY', 'DELIVERED'].includes(o.status)
+                      <div className={`p-2.5 rounded-xl border ${['PACKED_SERIALS_ASSIGNED', 'DISPATCHED', 'OUT_FOR_DELIVERY', 'DELIVERED'].includes(o.status)
                           ? 'bg-white border-[#24583D] font-bold text-[#24583D]'
                           : 'bg-transparent text-gray-400'
-                      }`}>
+                        }`}>
                         <div className="flex items-center justify-center gap-1 mb-1">
                           <ShieldCheck className="w-3.5 h-3.5 text-[#24583D]" />
                           <span className="text-[10px] uppercase font-mono">Step 2</span>
@@ -499,11 +492,10 @@ export function AccountClient() {
                         <div className="text-[10px] text-[#4F5D54]">Warranty Bound</div>
                       </div>
 
-                      <div className={`p-2.5 rounded-xl border ${
-                        ['DISPATCHED', 'OUT_FOR_DELIVERY', 'DELIVERED'].includes(o.status)
+                      <div className={`p-2.5 rounded-xl border ${['DISPATCHED', 'OUT_FOR_DELIVERY', 'DELIVERED'].includes(o.status)
                           ? 'bg-white border-[#24583D] font-bold text-[#24583D]'
                           : 'bg-transparent text-gray-400'
-                      }`}>
+                        }`}>
                         <div className="flex items-center justify-center gap-1 mb-1">
                           <Truck className="w-3.5 h-3.5 text-[#24583D]" />
                           <span className="text-[10px] uppercase font-mono">Step 3</span>
@@ -512,11 +504,10 @@ export function AccountClient() {
                         <div className="text-[10px] text-[#4F5D54]">LR Bilty Generated</div>
                       </div>
 
-                      <div className={`p-2.5 rounded-xl border ${
-                        o.status === 'DELIVERED'
+                      <div className={`p-2.5 rounded-xl border ${o.status === 'DELIVERED'
                           ? 'bg-white border-[#24583D] font-bold text-[#24583D]'
                           : 'bg-transparent text-gray-400'
-                      }`}>
+                        }`}>
                         <div className="flex items-center justify-center gap-1 mb-1">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           <span className="text-[10px] uppercase font-mono">Step 4</span>
@@ -552,7 +543,7 @@ export function AccountClient() {
                     </Link>
 
                     <a
-                      href={`https://wa.me/918004922476?text=${encodeURIComponent(`Namaste Arveer Impex, I would like live vehicle location for Order #${o.id} (LR: ${o.logistics?.lrNumber || 'Processing'})`)}`}
+                      href={`https://wa.me/917352210000?text=${encodeURIComponent(`Namaste Arveer Impex, I would like live vehicle location for Order #${o.id} (LR: ${o.logistics?.lrNumber || 'Processing'})`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="px-4 py-2 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white text-xs font-bold transition-all flex items-center gap-1.5"
@@ -765,7 +756,7 @@ export function AccountClient() {
         {/* Tab 5: Buyer Profile & Email ID Wise Setup */}
         {activeTab === 'profile' && (
           <div className="space-y-6 animate-in fade-in duration-300">
-            
+
             {/* Header Description */}
             <div className="bg-white rounded-3xl border border-[rgba(166,201,106,0.25)] p-6 sm:p-8 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
@@ -812,7 +803,7 @@ export function AccountClient() {
               )}
 
               <form onSubmit={handleSaveProfile} className="mt-6 space-y-6">
-                
+
                 {/* 1. Email ID Setup & Notification Vault */}
                 <div className="p-5 rounded-2xl bg-[#F7F5F0]/80 border border-[rgba(166,201,106,0.3)] space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-gray-200/80">

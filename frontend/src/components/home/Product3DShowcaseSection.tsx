@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { 
-  ShoppingBag, 
-  ArrowRight, 
-  ShieldCheck, 
-  Sparkles, 
-  Check, 
-  Wrench, 
+import {
+  ShoppingBag,
+  ArrowRight,
+  ShieldCheck,
+  Sparkles,
+  Check,
+  Wrench,
   MessageCircle,
   Layers,
   RotateCw,
@@ -256,7 +256,7 @@ export const Product3DShowcaseSection = () => {
 
   const { addItem } = useCartStore();
   const currentMachine = SHOWCASE_MACHINES[selectedMachineIndex];
-  
+
   const matchedProduct = PRODUCTS.find((p) => p.id === currentMachine.productId) || PRODUCTS[0];
 
   // Keyboard navigation for power-users and smooth client presentation
@@ -283,14 +283,14 @@ export const Product3DShowcaseSection = () => {
 
   const isSawking = currentMachine.brand === 'Sawking';
 
-  const whatsappInquiryUrl = `https://wa.me/918004922476?text=${encodeURIComponent(
+  const whatsappInquiryUrl = `https://wa.me/917352210000?text=${encodeURIComponent(
     `Hello Arveer Impex Sales Desk,\n\nI am inspecting the 3D Machinery Showcase:\n• Brand: ${currentMachine.brand}\n• Machine: ${currentMachine.name}\n• Category: ${currentMachine.category}\n• Price: ₹${currentMachine.priceGst} (incl. 5% GST)\n\nPlease share wholesale dealer terms, freight timeline, and spare parts catalog.`
   )}`;
 
   return (
     <section id="showcase" className="py-20 sm:py-32 bg-[#102C22] text-[#F7F5F0] relative overflow-hidden">
       {/* Subtle Atmospheric Grid Lines in Background */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none opacity-10"
         style={{
           backgroundImage: 'radial-gradient(circle at 50% 50%, rgba(166, 201, 106, 0.2) 1px, transparent 1px)',
@@ -299,7 +299,7 @@ export const Product3DShowcaseSection = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#14261F] border border-[rgba(166,201,106,0.3)] text-[#A6C96A] text-xs uppercase tracking-widest font-mono font-bold mb-3.5 shadow-sm">
@@ -369,24 +369,21 @@ export const Product3DShowcaseSection = () => {
                   setSelectedMachineIndex(index);
                   setActiveHotspotId(null);
                 }}
-                className={`group relative text-left p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 flex flex-col justify-between border overflow-hidden ${
-                  isSelected
+                className={`group relative text-left p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl transition-all duration-300 flex flex-col justify-between border overflow-hidden ${isSelected
                     ? 'bg-gradient-to-b from-[#1C3E30] to-[#0F261D] border-[#A6C96A] ring-2 ring-[#A6C96A]/35 shadow-[0_12px_32px_-6px_rgba(166,201,106,0.32)] scale-[1.01] sm:scale-[1.02] z-10'
                     : 'bg-[#121B17]/90 hover:bg-[#162720] border-[rgba(166,201,106,0.18)] hover:border-[#A6C96A]/50 hover:shadow-card'
-                }`}
+                  }`}
               >
                 {/* Active Neon Accent Indicator at top */}
-                <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 ${
-                  isSelected ? 'bg-gradient-to-r from-[#A6C96A] via-[#BEE37E] to-[#A6C96A]' : 'bg-transparent group-hover:bg-[#A6C96A]/30'
-                }`} />
+                <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-300 ${isSelected ? 'bg-gradient-to-r from-[#A6C96A] via-[#BEE37E] to-[#A6C96A]' : 'bg-transparent group-hover:bg-[#A6C96A]/30'
+                  }`} />
 
                 {/* Card Top: Brand Badge & Status */}
                 <div className="flex items-center justify-between gap-1 mb-2">
-                  <span className={`text-[8px] sm:text-[9px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                    isSawkingBrand
+                  <span className={`text-[8px] sm:text-[9px] font-bold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider ${isSawkingBrand
                       ? 'bg-[#D4AF37]/20 text-[#E5C158] border border-[#D4AF37]/40'
                       : 'bg-[#D64527]/20 text-[#FF6B4A] border border-[#D64527]/40'
-                  }`}>
+                    }`}>
                     {machine.brand}
                   </span>
 
@@ -439,10 +436,10 @@ export const Product3DShowcaseSection = () => {
 
         {/* 3D Showcase & Engineering Dossier Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Left Column: 3D WebGL Canvas */}
           <div className="lg:col-span-7">
-            <ProductShowcaseScene 
+            <ProductShowcaseScene
               machineType={currentMachine.id}
               activeHotspot={activeHotspotId}
               onSelectHotspot={(id) => setActiveHotspotId(id)}
@@ -451,7 +448,7 @@ export const Product3DShowcaseSection = () => {
 
           {/* Right Column: Engineering Dossier & Purchasing Box */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
-            
+
             {/* Header info */}
             <div className="space-y-2">
               <div className="flex items-center gap-2">
@@ -491,11 +488,10 @@ export const Product3DShowcaseSection = () => {
                     <button
                       key={hotspot.id}
                       onClick={() => setActiveHotspotId(hotspot.id)}
-                      className={`p-3 rounded-xl text-left transition-all duration-200 border ${
-                        isActive
+                      className={`p-3 rounded-xl text-left transition-all duration-200 border ${isActive
                           ? 'bg-[#24583D]/50 border-[#A6C96A] ring-1 ring-[#A6C96A]/40'
                           : 'bg-[#102C22]/60 border-[rgba(166,201,106,0.12)] hover:border-[rgba(166,201,106,0.3)]'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-[#F7F5F0]">
@@ -540,11 +536,10 @@ export const Product3DShowcaseSection = () => {
               {/* Primary CTA: Harvest Botanical Green (#24583D) */}
               <button
                 onClick={handleAddToCart}
-                className={`w-full sm:flex-1 py-3.5 px-6 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-lg ${
-                  added
+                className={`w-full sm:flex-1 py-3.5 px-6 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-lg ${added
                     ? 'bg-[#A6C96A] text-[#102C22] border-[#A6C96A]'
                     : 'bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] hover:text-[#FFFFFF] border-[#24583D] hover:border-[#A6C96A] hover:scale-[1.02] active:scale-[0.98]'
-                }`}
+                  }`}
               >
                 {added ? (
                   <>
@@ -581,7 +576,7 @@ export const Product3DShowcaseSection = () => {
 
             {/* Link to Spares Finder */}
             <div className="pt-2 text-center sm:text-left">
-              <Link 
+              <Link
                 href="/spares"
                 className="text-xs text-[#F7F5F0]/80 hover:text-[#A6C96A] font-medium inline-flex items-center gap-1.5 transition-colors underline-offset-4 hover:underline"
               >

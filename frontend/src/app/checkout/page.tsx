@@ -4,14 +4,14 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  ShieldCheck, 
-  Lock, 
-  CreditCard, 
-  Truck, 
-  Building2, 
-  CheckCircle2, 
-  AlertCircle, 
+import {
+  ShieldCheck,
+  Lock,
+  CreditCard,
+  Truck,
+  Building2,
+  CheckCircle2,
+  AlertCircle,
   ArrowLeft,
   QrCode,
   Check,
@@ -31,8 +31,8 @@ import { useAuth } from '@/context/AuthContext';
 export default function CheckoutPage() {
   const router = useRouter();
   const { profile, openAuthModal } = useAuth();
-  const { 
-    items, 
+  const {
+    items,
     getBaseExGstSubtotal,
     getGstAmount,
     getTaxSplit,
@@ -40,9 +40,9 @@ export default function CheckoutPage() {
     getCompatibilityAlerts,
     getWholesaleTierInfo,
     getWholesaleDiscountAmount,
-    getShippingCost, 
-    getTotal, 
-    discountAmount, 
+    getShippingCost,
+    getTotal,
+    discountAmount,
     clearCart,
     getFormattedWhatsAppOrderText
   } = useCartStore();
@@ -95,7 +95,7 @@ export default function CheckoutPage() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Payment Modals
   const [showRazorpayModal, setShowRazorpayModal] = useState(false);
   const [razorpayTab, setRazorpayTab] = useState<'upi' | 'card' | 'netbanking'>('upi');
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
     const isAdvance = paymentMethod === 'two_stage_advance';
     const advanceAmountPaid = isAdvance ? Math.round(total * 0.20) : (paymentStatus === 'PAID' ? total : 0);
     const balanceDue = isAdvance ? total - advanceAmountPaid : (paymentStatus === 'PAID' ? 0 : total);
-    
+
     let resolvedStatus: StoredOrder['status'] = 'PAYMENT_CONFIRMED';
     if (isAdvance) {
       resolvedStatus = 'ADVANCE_PAID_AWAITING_BALANCE';
@@ -273,7 +273,7 @@ export default function CheckoutPage() {
         `• Mobile: ${formData.phone}\n\n` +
         `Please confirm freight dispatch and issue commercial GST invoice.`
       );
-      window.open(`https://wa.me/918004922476?text=${encoded}`, '_blank');
+      window.open(`https://wa.me/917352210000?text=${encoded}`, '_blank');
       setLoading(false);
       router.push(`/order-success/${orderId}`);
       return;
@@ -355,7 +355,7 @@ export default function CheckoutPage() {
   return (
     <div className="pt-12 sm:pt-16 pb-20 bg-offwhite text-charcoal min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Breadcrumb */}
         <div className="mb-8 flex items-center justify-between">
           <Link href="/products" className="inline-flex items-center gap-2 text-xs font-semibold text-charcoal-muted hover:text-botanical transition-colors">
@@ -369,7 +369,7 @@ export default function CheckoutPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          
+
           {/* Main Checkout Form */}
           <div className="lg:col-span-7 space-y-8">
             <div>
@@ -431,7 +431,7 @@ export default function CheckoutPage() {
             )}
 
             <form id="checkout-form" onSubmit={handleStartCheckout} className="space-y-6">
-              
+
               {/* 1. Consignee & Firm Information */}
               <div className="p-6 sm:p-8 rounded-3xl bg-sand/35 border border-sand-border space-y-4 shadow-sm">
                 <h2 className="font-serif text-xl font-bold text-charcoal flex items-center gap-2">
@@ -648,11 +648,10 @@ export default function CheckoutPage() {
                 <div className="space-y-3">
                   {/* Virtual Account Escrow (> ₹50,000) - Section 5.2 */}
                   {total >= 50000 && (
-                    <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                      formData.paymentMethod === 'virtual_account'
+                    <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${formData.paymentMethod === 'virtual_account'
                         ? 'bg-offwhite border-botanical shadow-sm ring-1 ring-botanical'
                         : 'bg-sand/20 border-sand-border hover:border-sand-dark'
-                    }`}>
+                      }`}>
                       <div className="flex items-center gap-3">
                         <input
                           type="radio"
@@ -679,11 +678,10 @@ export default function CheckoutPage() {
                   )}
 
                   {/* Two-Stage 20% Booking Advance - Section 5.3 */}
-                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                    formData.paymentMethod === 'two_stage_advance'
+                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${formData.paymentMethod === 'two_stage_advance'
                       ? 'bg-offwhite border-botanical shadow-sm'
                       : 'bg-sand/20 border-sand-border hover:border-sand-dark'
-                  }`}>
+                    }`}>
                     <div className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -709,11 +707,10 @@ export default function CheckoutPage() {
                   </label>
 
                   {/* Razorpay Sub-50k Instant Gateway */}
-                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                    formData.paymentMethod === 'razorpay'
+                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${formData.paymentMethod === 'razorpay'
                       ? 'bg-offwhite border-botanical shadow-sm'
                       : 'bg-sand/20 border-sand-border hover:border-sand-dark'
-                  }`}>
+                    }`}>
                     <div className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -732,11 +729,10 @@ export default function CheckoutPage() {
                   </label>
 
                   {/* WhatsApp B2B Dispatch */}
-                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                    formData.paymentMethod === 'whatsapp'
+                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${formData.paymentMethod === 'whatsapp'
                       ? 'bg-offwhite border-botanical shadow-sm'
                       : 'bg-sand/20 border-sand-border hover:border-sand-dark'
-                  }`}>
+                    }`}>
                     <div className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -760,11 +756,10 @@ export default function CheckoutPage() {
                   </label>
 
                   {/* Bank Wire / RTGS */}
-                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                    formData.paymentMethod === 'bank_transfer'
+                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${formData.paymentMethod === 'bank_transfer'
                       ? 'bg-offwhite border-botanical shadow-sm'
                       : 'bg-sand/20 border-sand-border hover:border-sand-dark'
-                  }`}>
+                    }`}>
                     <div className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -783,11 +778,10 @@ export default function CheckoutPage() {
                   </label>
 
                   {/* Cash / Transport Pay on Delivery */}
-                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
-                    formData.paymentMethod === 'cod'
+                  <label className={`p-4 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${formData.paymentMethod === 'cod'
                       ? 'bg-offwhite border-botanical shadow-sm'
                       : 'bg-sand/20 border-sand-border hover:border-sand-dark'
-                  }`}>
+                    }`}>
                     <div className="flex items-center gap-3">
                       <input
                         type="radio"
@@ -986,7 +980,7 @@ export default function CheckoutPage() {
       {showRazorpayModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-3xl border border-sand-border shadow-2xl max-w-md w-full overflow-hidden text-charcoal">
-            
+
             {/* Razorpay Header */}
             <div className="bg-[#0C2340] text-white p-5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
@@ -1020,27 +1014,24 @@ export default function CheckoutPage() {
                 <button
                   type="button"
                   onClick={() => setRazorpayTab('upi')}
-                  className={`py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                    razorpayTab === 'upi' ? 'bg-white shadow text-charcoal' : 'text-charcoal-muted'
-                  }`}
+                  className={`py-1.5 rounded-lg text-xs font-semibold transition-colors ${razorpayTab === 'upi' ? 'bg-white shadow text-charcoal' : 'text-charcoal-muted'
+                    }`}
                 >
                   UPI QR
                 </button>
                 <button
                   type="button"
                   onClick={() => setRazorpayTab('card')}
-                  className={`py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                    razorpayTab === 'card' ? 'bg-white shadow text-charcoal' : 'text-charcoal-muted'
-                  }`}
+                  className={`py-1.5 rounded-lg text-xs font-semibold transition-colors ${razorpayTab === 'card' ? 'bg-white shadow text-charcoal' : 'text-charcoal-muted'
+                    }`}
                 >
                   Card
                 </button>
                 <button
                   type="button"
                   onClick={() => setRazorpayTab('netbanking')}
-                  className={`py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                    razorpayTab === 'netbanking' ? 'bg-white shadow text-charcoal' : 'text-charcoal-muted'
-                  }`}
+                  className={`py-1.5 rounded-lg text-xs font-semibold transition-colors ${razorpayTab === 'netbanking' ? 'bg-white shadow text-charcoal' : 'text-charcoal-muted'
+                    }`}
                 >
                   NetBanking
                 </button>
@@ -1105,11 +1096,10 @@ export default function CheckoutPage() {
                 type="button"
                 onClick={handleConfirmRazorpayPayment}
                 disabled={loading || razorpaySuccess}
-                className={`w-full py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${
-                  razorpaySuccess
+                className={`w-full py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 ${razorpaySuccess
                     ? 'bg-green-600 text-white'
                     : 'bg-[#3395FF] hover:bg-[#2080E5] text-white shadow-lg'
-                }`}
+                  }`}
               >
                 {loading ? (
                   <span>Verifying Payment Handshake...</span>
@@ -1137,7 +1127,7 @@ export default function CheckoutPage() {
       {showBankModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-3xl border border-sand-border shadow-2xl max-w-lg w-full overflow-hidden text-charcoal">
-            
+
             <div className="bg-[#102C22] text-[#F7F5F0] p-5 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl bg-[#24583D] flex items-center justify-center border border-[#A6C96A]/40 font-bold text-sm">
@@ -1234,7 +1224,7 @@ export default function CheckoutPage() {
       {showVanModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="bg-white rounded-3xl border border-sand-border shadow-2xl max-w-lg w-full overflow-hidden text-charcoal">
-            
+
             <div className="bg-[#102C22] text-white p-6 border-b border-[rgba(166,201,106,0.25)] flex items-center justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-1">

@@ -1,7 +1,7 @@
 import { WhatsAppInquiryRequest, Order } from '../types/index.js';
 import { credentials } from '../config/credentials.js';
 
-const AGROVE_WHATSAPP_PHONE = '918004922476';
+const AGROVE_WHATSAPP_PHONE = '917352210000';
 
 export class WhatsAppService {
   /**
@@ -61,7 +61,7 @@ export class WhatsAppService {
         const primaryItem = order.items[0];
         const qty = order.items.reduce((acc, it) => acc + it.quantity, 0);
         const prodName = primaryItem ? primaryItem.name : 'Agroveer & Sawking Commercial Equipment';
-        message = 
+        message =
           `Namaste ${order.customer.fullName}, thank you for choosing Arveer Impex.\n\n` +
           `Your order #${order.id} for ${qty}x ${prodName} has been confirmed.\n` +
           `Total Value: ₹${order.totalINR.toLocaleString('en-IN')} (Incl. GST).\n\n` +
@@ -73,7 +73,7 @@ export class WhatsAppService {
       case 'qc-serial-registration':
       case 'template-2': {
         const serial = (order.serials && order.serials[0]) ? order.serials[0].serialOrEngineNumber : (customData?.serialNumber || 'AG85-2026-10492');
-        message = 
+        message =
           `Update on Order #${order.id}: Your machinery has passed factory bench testing.\n\n` +
           `Registered Engine Serial No: ${serial}\n` +
           `Warranty Coverage: 6 Months Manufacturer Warranty activated.\n` +
@@ -87,7 +87,7 @@ export class WhatsAppService {
         const lr = order.logistics.lrNumber || customData?.lrNumber || 'LR-MH-892104';
         const godown = order.logistics.destinationGodownAddress || `${order.customer.city}, ${order.customer.state}`;
         const lrUrl = order.logistics.lrBiltyDocumentUrl || customData?.lrImageUrl || `${credentials.clientUrl}/order-success/${order.id}#bilty`;
-        message = 
+        message =
           `Consignment Dispatched!\n\n` +
           `Order #${order.id} has been handed over to ${carrier}.\n` +
           `Lorry Receipt (Bilty) No: ${lr}\n` +

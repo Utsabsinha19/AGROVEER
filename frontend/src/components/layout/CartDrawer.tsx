@@ -3,15 +3,15 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  X, 
-  Trash2, 
-  Plus, 
-  Minus, 
-  ShoppingBag, 
-  ArrowRight, 
-  Tag, 
-  Truck, 
+import {
+  X,
+  Trash2,
+  Plus,
+  Minus,
+  ShoppingBag,
+  ArrowRight,
+  Tag,
+  Truck,
   ShieldCheck,
   MessageCircle,
   Building2,
@@ -24,22 +24,22 @@ import { formatCurrency } from '@/lib/utils';
 
 export const CartDrawer = () => {
   const { t } = useLanguageStore();
-  const { 
-    items, 
-    isCartOpen, 
-    setCartOpen, 
-    removeItem, 
-    updateQuantity, 
-    promoCode, 
-    discountAmount, 
-    promoError, 
-    applyPromoCode, 
-    removePromoCode, 
+  const {
+    items,
+    isCartOpen,
+    setCartOpen,
+    removeItem,
+    updateQuantity,
+    promoCode,
+    discountAmount,
+    promoError,
+    applyPromoCode,
+    removePromoCode,
     getBaseExGstSubtotal,
     getGstAmount,
     getWholesaleTierInfo,
     getWholesaleDiscountAmount,
-    getShippingCost, 
+    getShippingCost,
     getTotal,
     getFormattedWhatsAppOrderText
   } = useCartStore();
@@ -62,19 +62,19 @@ export const CartDrawer = () => {
     if (success) setInputCode('');
   };
 
-  const whatsappOrderUrl = `https://wa.me/918004922476?text=${encodeURIComponent(getFormattedWhatsAppOrderText())}`;
+  const whatsappOrderUrl = `https://wa.me/917352210000?text=${encodeURIComponent(getFormattedWhatsAppOrderText())}`;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden animate-in fade-in duration-300">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={() => setCartOpen(false)}
       />
 
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-full sm:w-screen max-w-md bg-forest-900 border-l border-white/10 shadow-2xl flex flex-col text-sand">
-          
+
           {/* Header */}
           <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between bg-forest-950/80">
             <div className="flex items-center gap-2.5 sm:gap-3">
@@ -158,7 +158,7 @@ export const CartDrawer = () => {
               items.map((item) => {
                 const exGstPrice = item.product.exGstPrice || Math.round(item.product.price / 1.05);
                 return (
-                  <div 
+                  <div
                     key={item.product.id + (item.selectedOption || '')}
                     className="p-4 rounded-2xl bg-forest-950/50 border border-white/5 flex gap-4 items-center"
                   >
@@ -235,7 +235,7 @@ export const CartDrawer = () => {
           {/* Footer Financial Matrix & Actions */}
           {items.length > 0 && (
             <div className="p-4 sm:p-6 border-t border-white/10 bg-forest-950/80 space-y-3 sm:space-y-4">
-              
+
               {/* Promo / Dealer Code Input */}
               <form onSubmit={handleApplyPromo} className="flex gap-2">
                 <div className="relative flex-1">

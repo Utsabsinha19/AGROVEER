@@ -2,15 +2,15 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { 
-  MessageSquare, 
-  X, 
-  Send, 
-  Sparkles, 
-  ShieldCheck, 
-  FileText, 
-  Wrench, 
-  Truck, 
+import {
+  MessageSquare,
+  X,
+  Send,
+  Sparkles,
+  ShieldCheck,
+  FileText,
+  Wrench,
+  Truck,
   ExternalLink,
   PhoneCall
 } from 'lucide-react';
@@ -24,7 +24,7 @@ export const WhatsAppWidget: React.FC = () => {
   const { items, getTotal, getFormattedWhatsAppOrderText } = useCartStore();
   const { currentLanguage, detectedRegion } = useLanguageStore();
 
-  const WHATSAPP_PHONE = '918004922476'; // +91 80049 22476
+  const WHATSAPP_PHONE = '917352210000'; // +91 80049 22476
 
   const openWhatsApp = (msg: string) => {
     const encoded = encodeURIComponent(msg);
@@ -113,7 +113,7 @@ export const WhatsAppWidget: React.FC = () => {
       {/* Floating Chat Modal */}
       {isOpen && (
         <div className="w-[360px] sm:w-[400px] rounded-3xl bg-[#141A17] border border-[rgba(166,201,106,0.2)] shadow-2xl overflow-hidden flex flex-col text-[#F7F5F0] animate-in fade-in slide-in-from-bottom-5 duration-300">
-          
+
           {/* Header in Deep Forest Slate (#102C22) */}
           <div className="p-4 sm:p-5 bg-[#102C22] border-b border-[rgba(166,201,106,0.15)] flex items-center justify-between">
             <div className="flex items-center gap-3">

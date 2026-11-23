@@ -3,23 +3,23 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  CheckCircle2, 
-  Package, 
-  Truck, 
-  FileText, 
-  ArrowRight, 
-  ShieldCheck, 
-  Calendar, 
-  MapPin, 
-  Mail, 
-  Printer, 
-  MessageCircle, 
-  Receipt, 
-  X, 
-  CreditCard, 
-  Building2, 
-  Clock 
+import {
+  CheckCircle2,
+  Package,
+  Truck,
+  FileText,
+  ArrowRight,
+  ShieldCheck,
+  Calendar,
+  MapPin,
+  Mail,
+  Printer,
+  MessageCircle,
+  Receipt,
+  X,
+  CreditCard,
+  Building2,
+  Clock
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { formatCurrency } from '@/lib/utils';
@@ -106,7 +106,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
   return (
     <div className="pt-28 sm:pt-36 pb-24 bg-offwhite text-charcoal min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Success Card Header */}
         <div className="rounded-3xl bg-sand/35 border border-sand-border p-8 sm:p-12 text-center mb-8 shadow-card relative overflow-hidden">
           <div className="w-20 h-20 rounded-full bg-botanical/20 border border-botanical/40 text-botanical flex items-center justify-center mx-auto mb-6">
@@ -133,7 +133,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
             </button>
 
             <a
-              href={`https://wa.me/918004922476?text=${whatsappTrackingText}`}
+              href={`https://wa.me/917352210000?text=${whatsappTrackingText}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold transition-colors flex items-center gap-2 shadow-sm"
@@ -219,20 +219,18 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
                 isCurrent: order.status === 'OUT_FOR_DELIVERY'
               }
             ].map((step, idx) => (
-              <div 
-                key={idx} 
-                className={`p-3.5 rounded-2xl border transition-all ${
-                  step.isDone 
-                    ? 'bg-offwhite border-botanical/50 shadow-sm' 
-                    : step.isCurrent 
-                      ? 'bg-sand/60 border-botanical ring-1 ring-botanical' 
+              <div
+                key={idx}
+                className={`p-3.5 rounded-2xl border transition-all ${step.isDone
+                    ? 'bg-offwhite border-botanical/50 shadow-sm'
+                    : step.isCurrent
+                      ? 'bg-sand/60 border-botanical ring-1 ring-botanical'
                       : 'bg-sand/20 border-sand-border opacity-70'
-                }`}
+                  }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
-                    step.isDone ? 'bg-botanical text-white' : 'bg-sand-border text-charcoal'
-                  }`}>
+                  <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${step.isDone ? 'bg-botanical text-white' : 'bg-sand-border text-charcoal'
+                    }`}>
                     {step.num}
                   </span>
                   {step.isDone && <CheckCircle2 className="w-3.5 h-3.5 text-botanical" />}
@@ -415,7 +413,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
                 <span className="text-charcoal-muted">Taxable Subtotal (Base):</span>
                 <span className="font-semibold">{formatCurrency(order.subtotal)}</span>
               </div>
-              
+
               {order.discount > 0 && (
                 <div className="flex justify-between text-botanical font-semibold">
                   <span>Wholesale Discount Applied:</span>
@@ -465,14 +463,13 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
                 <div className="flex items-center gap-2 text-charcoal">
                   <CreditCard className="w-4 h-4 text-botanical" />
                   <span className="font-semibold">
-                    Payment Method: {order.paymentMethod === 'razorpay' ? 'Razorpay Smart Gateway' : 
-                                    order.paymentMethod === 'bank_transfer' ? 'Bank RTGS / NEFT Transfer' : 
-                                    order.paymentMethod === 'whatsapp' ? 'WhatsApp Purchase Order' : 'Pay on Delivery (POD)'}
+                    Payment Method: {order.paymentMethod === 'razorpay' ? 'Razorpay Smart Gateway' :
+                      order.paymentMethod === 'bank_transfer' ? 'Bank RTGS / NEFT Transfer' :
+                        order.paymentMethod === 'whatsapp' ? 'WhatsApp Purchase Order' : 'Pay on Delivery (POD)'}
                   </span>
                 </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                  order.paymentStatus === 'PAID' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
-                }`}>
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${order.paymentStatus === 'PAID' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'
+                  }`}>
                   {order.paymentStatus}
                 </span>
               </div>
@@ -499,7 +496,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
         {/* Cryptographic Digital Signature & SaaS Verification Seal */}
         <div className="p-6 sm:p-8 rounded-3xl bg-[#102C22] text-[#F7F5F0] border border-[#A6C96A]/40 mb-12 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#A6C96A]/5 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/15 mb-6">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -512,7 +509,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
                 Official Digital Dispatch & Quality Assurance Seal
               </h3>
             </div>
-            
+
             <div className="flex items-center gap-2 self-start sm:self-auto">
               <span className="px-3.5 py-1.5 rounded-full bg-[#24583D] border border-[#A6C96A]/40 text-[#A6C96A] font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#A6C96A]" />
@@ -587,7 +584,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
       {showInvoiceModal && (
         <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
           <div className="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-10 shadow-2xl border border-sand-border text-charcoal relative max-h-[95vh] overflow-y-auto">
-            
+
             {/* Modal Actions */}
             <div className="flex items-center justify-between pb-6 border-b border-sand-border print:hidden">
               <div className="flex items-center gap-2">
@@ -613,7 +610,7 @@ export function OrderSuccessClient({ orderId }: OrderSuccessClientProps) {
 
             {/* Printable Invoice Sheet */}
             <div className="pt-6 space-y-6 text-xs text-charcoal font-sans">
-              
+
               {/* Header: Seller & Invoice Info */}
               <div className="grid grid-cols-2 gap-6 pb-6 border-b border-sand-border">
                 <div>

@@ -3,15 +3,15 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  ShoppingBag, 
-  Heart, 
-  ShieldCheck, 
-  Check, 
-  Star, 
-  ArrowLeft, 
-  Plus, 
-  Minus, 
+import {
+  ShoppingBag,
+  Heart,
+  ShieldCheck,
+  Check,
+  Star,
+  ArrowLeft,
+  Plus,
+  Minus,
   Truck,
   Wrench,
   Video,
@@ -108,14 +108,14 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
     }, 2000);
   };
 
-  const whatsappInquiryUrl = `https://wa.me/918004922476?text=${encodeURIComponent(
+  const whatsappInquiryUrl = `https://wa.me/917352210000?text=${encodeURIComponent(
     `Hello Arveer Impex Sales Desk,\n\nI want to order / inquire about this model:\n• Model: ${product.name}\n• Category: ${product.category}\n• Quantity: ${quantity} unit(s)\n• Unit Price: ${formatCurrency(product.price)} (incl. 5% GST)\n• Total Value: ${formatCurrency(product.price * quantity)}\n\nPlease confirm dispatch logistics and wholesale dealer discount for this volume.`
   )}`;
 
   return (
     <div className="pt-28 pb-24 bg-offwhite text-charcoal min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-charcoal-muted mb-8">
           <Link href="/products" className="hover:text-botanical transition-colors flex items-center gap-1 font-medium">
@@ -130,7 +130,7 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
 
         {/* Top Product Hero Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-16">
-          
+
           {/* Media Column (Image + Factory Video Option) */}
           <div className="lg:col-span-6 space-y-4">
             <div className="relative rounded-3xl overflow-hidden bg-white border border-sand-border shadow-card h-[400px] sm:h-[480px] p-6 flex items-center justify-center">
@@ -165,7 +165,7 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
 
           {/* Product Dossier & Buying Controls */}
           <div className="lg:col-span-6 space-y-6">
-            
+
             {/* Title & Tagline */}
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -263,11 +263,10 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
 
               <button
                 onClick={handleAddToCart}
-                className={`flex-1 py-4 px-8 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm w-full ${
-                  added
+                className={`flex-1 py-4 px-8 rounded-2xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm w-full ${added
                     ? 'bg-leaf text-forest border-leaf'
                     : 'bg-botanical hover:bg-botanical-hover text-offwhite border-leaf/40 hover:scale-[1.02] active:scale-[0.98]'
-                }`}
+                  }`}
               >
                 {added ? (
                   <>
@@ -284,11 +283,10 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
 
               <button
                 onClick={() => toggleWishlist(product.id)}
-                className={`p-4 rounded-2xl border transition-colors ${
-                  isWishlisted
+                className={`p-4 rounded-2xl border transition-colors ${isWishlisted
                     ? 'bg-botanical border-botanical text-offwhite shadow-sm'
                     : 'bg-sand/35 border-sand-border text-charcoal hover:text-botanical hover:bg-sand/60'
-                }`}
+                  }`}
                 title="Save product"
               >
                 <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
@@ -316,9 +314,8 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
           <div className="flex border-b border-sand-border gap-6 mb-8 overflow-x-auto pb-2">
             <button
               onClick={() => setActiveTab('specs')}
-              className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap ${
-                activeTab === 'specs' ? 'text-botanical font-bold' : 'text-charcoal-muted hover:text-charcoal'
-              }`}
+              className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap ${activeTab === 'specs' ? 'text-botanical font-bold' : 'text-charcoal-muted hover:text-charcoal'
+                }`}
             >
               Technical Specifications & Specs
               {activeTab === 'specs' && (
@@ -328,9 +325,8 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
 
             <button
               onClick={() => setActiveTab('spares')}
-              className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-1.5 ${
-                activeTab === 'spares' ? 'text-botanical font-bold' : 'text-charcoal-muted hover:text-charcoal'
-              }`}
+              className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-1.5 ${activeTab === 'spares' ? 'text-botanical font-bold' : 'text-charcoal-muted hover:text-charcoal'
+                }`}
             >
               <Wrench className="w-4 h-4" />
               <span>Compatible Spares & Attachments ({compatibleSparesList.length})</span>
@@ -342,9 +338,8 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
             {product.videoUrl && (
               <button
                 onClick={() => setActiveTab('video')}
-                className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-1.5 ${
-                  activeTab === 'video' ? 'text-botanical font-bold' : 'text-charcoal-muted hover:text-charcoal'
-                }`}
+                className={`pb-3 text-sm font-semibold transition-colors relative whitespace-nowrap flex items-center gap-1.5 ${activeTab === 'video' ? 'text-botanical font-bold' : 'text-charcoal-muted hover:text-charcoal'
+                  }`}
               >
                 <Video className="w-4 h-4" />
                 <span>Factory Video & Demonstration</span>
@@ -469,11 +464,10 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
                         <div className="mt-4 pt-2 border-t border-sand-border flex gap-2">
                           <button
                             onClick={() => handleAddSpare(spare)}
-                            className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
-                              isAdded
+                            className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${isAdded
                                 ? 'bg-leaf text-forest'
                                 : 'bg-botanical hover:bg-botanical-hover text-offwhite'
-                            }`}
+                              }`}
                           >
                             {isAdded ? (
                               <>

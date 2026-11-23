@@ -47,7 +47,7 @@ export const credentials = {
     phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
     wabaId: process.env.WHATSAPP_BUSINESS_ACCOUNT_ID || '',
     apiToken: process.env.WHATSAPP_API_TOKEN || '',
-    commercialDeskPhone: process.env.WHATSAPP_COMMERCIAL_DESK_PHONE || '918004922476',
+    commercialDeskPhone: process.env.WHATSAPP_COMMERCIAL_DESK_PHONE || '917352210000',
   },
 
   // Cloudinary

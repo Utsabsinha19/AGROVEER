@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  ShoppingBag, 
-  Heart, 
-  Eye, 
-  Check, 
+import {
+  ShoppingBag,
+  Heart,
+  Eye,
+  Check,
   Star,
   MessageCircle
 } from 'lucide-react';
@@ -62,7 +62,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
     if (onQuickView) onQuickView(product);
   };
 
-  const whatsappInquiryUrl = `https://wa.me/918004922476?text=${encodeURIComponent(
+  const whatsappInquiryUrl = `https://wa.me/917352210000?text=${encodeURIComponent(
     `Hello Arveer Impex Sales Desk,\nI am inquiring about / placing an order for:\n• Model: ${product.name}\n• Category: ${product.category}\n• Price: ${formatCurrency(product.price)} (incl. 5% GST)\nPlease provide dispatch schedule and wholesale dealer quotation.`
   )}`;
 
@@ -112,11 +112,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
             <button
               onClick={handleToggleWishlist}
-              className={`p-2 rounded-xl backdrop-blur-sm transition-all duration-300 ${
-                isWishlisted
+              className={`p-2 rounded-xl backdrop-blur-sm transition-all duration-300 ${isWishlisted
                   ? 'bg-[#24583D] text-[#F7F5F0] border border-[#24583D] shadow-sm'
                   : 'bg-white/90 text-[#141A17] hover:text-[#24583D] hover:bg-white border border-[rgba(166,201,106,0.2)]'
-              }`}
+                }`}
               title={isWishlisted ? 'Remove from saved' : 'Save model'}
             >
               <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
@@ -204,11 +203,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           {/* Primary CTA: Harvest Botanical Green (#24583D) with text #FFFFFF / #F7F5F0 */}
           <button
             onClick={handleAddToCart}
-            className={`flex-1 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm ${
-              added
+            className={`flex-1 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm ${added
                 ? 'bg-[#A6C96A] text-[#102C22] border-[#A6C96A]'
                 : 'bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] hover:text-[#FFFFFF] border-[#24583D] hover:border-[#A6C96A]'
-            }`}
+              }`}
           >
             {added ? (
               <>

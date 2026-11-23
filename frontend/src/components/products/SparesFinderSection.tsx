@@ -3,16 +3,16 @@
 import React, { useState, useMemo, useDeferredValue, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  Wrench, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Search, 
-  Plus, 
-  Check, 
-  ExternalLink, 
-  MessageCircle, 
-  Layers, 
+import {
+  Wrench,
+  CheckCircle2,
+  ShieldCheck,
+  Search,
+  Plus,
+  Check,
+  ExternalLink,
+  MessageCircle,
+  Layers,
   AlertCircle,
   HelpCircle,
   Sparkles,
@@ -24,15 +24,15 @@ import { formatCurrency } from '@/lib/utils';
 import { Product } from '@/types';
 
 // Fallback-resilient image component using verified studio photography
-function SafeSpareImage({ 
-  src, 
-  alt, 
-  className = '', 
-  category = '' 
-}: { 
-  src: string; 
-  alt: string; 
-  className?: string; 
+function SafeSpareImage({
+  src,
+  alt,
+  className = '',
+  category = ''
+}: {
+  src: string;
+  alt: string;
+  className?: string;
   category?: string;
 }) {
   const getOpenSourceFallback = (cat: string) => {
@@ -104,9 +104,8 @@ function SafeSpareImage({
           }
           setHasFailed(true);
         }}
-        className={`w-full h-full object-contain transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
+        className={`w-full h-full object-contain transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'
+          } ${className}`}
       />
     </div>
   );
@@ -139,8 +138,8 @@ export const SparesFinderSection = () => {
 
   const filteredSpares = useMemo(() => {
     // When user enters a search query, search globally across all verified spares so any SKU/code is found instantly
-    const basePool = deferredSearch.trim() 
-      ? COMPATIBLE_SPARES 
+    const basePool = deferredSearch.trim()
+      ? COMPATIBLE_SPARES
       : machineSpares;
 
     const q = deferredSearch.toLowerCase().trim();
@@ -228,13 +227,13 @@ export const SparesFinderSection = () => {
 
   const getWhatsAppSpareUrl = (spare: typeof COMPATIBLE_SPARES[0]) => {
     const text = `Hello Arveer Impex Sales Desk,\n\nI need a quote/dispatch confirmation for this authentic spare part:\n• Machine: ${activeMachine.name}\n• Spare Name: ${spare.name}\n• SKU: ${spare.sku}\n• Price: ₹${spare.priceGst} (incl. 5% GST)\n\nPlease confirm availability and freight dispatch to my dealership.`;
-    return `https://wa.me/918004922476?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/917352210000?text=${encodeURIComponent(text)}`;
   };
 
   return (
     <section id="spares-finder" className="py-20 sm:py-28 bg-[#F7F5F0] text-[#141A17] relative overflow-hidden border-t border-[rgba(166,201,106,0.18)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-[rgba(166,201,106,0.25)] text-[#24583D] text-xs uppercase tracking-widest font-bold mb-3 shadow-sm">
@@ -274,11 +273,10 @@ export const SparesFinderSection = () => {
                     setSelectedCategory('All');
                     setSearchQuery('');
                   }}
-                  className={`p-3.5 rounded-2xl text-left transition-all duration-300 border flex flex-col justify-between group ${
-                    isSelected
+                  className={`p-3.5 rounded-2xl text-left transition-all duration-300 border flex flex-col justify-between group ${isSelected
                       ? 'bg-white border-[#24583D] shadow-card ring-2 ring-[#24583D]/20'
                       : 'bg-white/60 hover:bg-white border-[rgba(166,201,106,0.18)] hover:border-[#24583D]/40'
-                  }`}
+                    }`}
                 >
                   <div className="relative w-full h-24 mb-3 rounded-xl overflow-hidden bg-[#F7F5F0] flex items-center justify-center p-2 border border-[rgba(166,201,106,0.1)]">
                     <SafeSpareImage
@@ -289,13 +287,12 @@ export const SparesFinderSection = () => {
                     />
                     <div className="absolute top-1.5 left-1.5 z-10">
                       {/* Agroveer Power Tag, Sawking Gold Badge, or All Master Tag */}
-                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs backdrop-blur-md ${
-                        isMaster
+                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full shadow-xs backdrop-blur-md ${isMaster
                           ? 'bg-[#102C22] text-[#A6C96A] border border-[#A6C96A]/40'
                           : isSawking
-                          ? 'bg-white/95 text-[#8F7010] border border-[#D4AF37]/50'
-                          : 'bg-white/95 text-[#D64527] border border-[#D64527]/50'
-                      }`}>
+                            ? 'bg-white/95 text-[#8F7010] border border-[#D4AF37]/50'
+                            : 'bg-white/95 text-[#D64527] border border-[#D64527]/50'
+                        }`}>
                         {isMaster ? 'Master Catalog' : machine.brand}
                       </span>
                     </div>
@@ -375,28 +372,26 @@ export const SparesFinderSection = () => {
                   cat === 'All'
                     ? (activeMachine.id === 'all-machines' ? COMPATIBLE_SPARES.length : machineSpares.length)
                     : (activeMachine.id === 'all-machines'
-                        ? COMPATIBLE_SPARES.filter(
-                            (s) => s.masterCategory === cat || s.category === cat
-                          ).length
-                        : machineSpares.filter((s) => s.category === cat).length);
+                      ? COMPATIBLE_SPARES.filter(
+                        (s) => s.masterCategory === cat || s.category === cat
+                      ).length
+                      : machineSpares.filter((s) => s.category === cat).length);
 
                 return (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors border flex items-center gap-1.5 ${
-                      selectedCategory === cat
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-colors border flex items-center gap-1.5 ${selectedCategory === cat
                         ? 'bg-[#24583D] text-[#F7F5F0] border-[#24583D] shadow-sm'
                         : 'bg-white text-[#141A17] border-[rgba(166,201,106,0.22)] hover:bg-[#F0ECE1]'
-                    }`}
+                      }`}
                   >
                     <span>{cat}</span>
                     <span
-                      className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full ${
-                        selectedCategory === cat
+                      className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full ${selectedCategory === cat
                           ? 'bg-white/20 text-white'
                           : 'bg-gray-100 text-[#4F5D54]'
-                      }`}
+                        }`}
                     >
                       {count}
                     </span>
@@ -438,9 +433,9 @@ export const SparesFinderSection = () => {
                       <div>
                         {/* Authentic Reference Image Box with Demand & Stock Badges */}
                         <div className="relative w-full h-44 mb-3.5 rounded-xl bg-[#F7F5F0] border border-[rgba(166,201,106,0.2)] overflow-hidden flex items-center justify-center p-2 group-hover:border-[#24583D]/40 transition-colors">
-                          <SafeSpareImage 
-                            src={spare.image} 
-                            alt={spare.name} 
+                          <SafeSpareImage
+                            src={spare.image}
+                            alt={spare.name}
                             className="object-contain max-h-full max-w-full drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
                             category={spare.category}
                           />
@@ -448,15 +443,14 @@ export const SparesFinderSection = () => {
                           {/* Top Badges Overlay */}
                           <div className="absolute top-2 left-2 flex flex-col gap-1 z-10 pointer-events-none">
                             {spare.demand && (
-                              <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-sm flex items-center gap-1 ${
-                                spare.demand === 'HIGH' 
-                                  ? 'bg-rose-600 text-white' 
+                              <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded shadow-sm flex items-center gap-1 ${spare.demand === 'HIGH'
+                                  ? 'bg-rose-600 text-white'
                                   : spare.demand === 'MEDIUM'
-                                  ? 'bg-amber-600 text-white'
-                                  : spare.demand === 'NEW LAUNCH'
-                                  ? 'bg-emerald-600 text-white'
-                                  : 'bg-[#102C22] text-[#A6C96A] border border-[#A6C96A]/30'
-                              }`}>
+                                    ? 'bg-amber-600 text-white'
+                                    : spare.demand === 'NEW LAUNCH'
+                                      ? 'bg-emerald-600 text-white'
+                                      : 'bg-[#102C22] text-[#A6C96A] border border-[#A6C96A]/30'
+                                }`}>
                                 {spare.demand === 'HIGH' && '🔥 '}
                                 {spare.demand === 'NEW LAUNCH' && '✨ '}
                                 {spare.demand} DEMAND
@@ -517,11 +511,10 @@ export const SparesFinderSection = () => {
                         {/* Primary CTA: Harvest Botanical Green (#24583D) */}
                         <button
                           onClick={() => handleAddSpareToCart(spare)}
-                          className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-center gap-1.5 ${
-                            isAdded
+                          className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all duration-300 flex items-center justify-center gap-1.5 ${isAdded
                               ? 'bg-[#A6C96A] text-[#102C22]'
                               : 'bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] hover:text-[#FFFFFF]'
-                          }`}
+                            }`}
                         >
                           {isAdded ? (
                             <>
@@ -563,7 +556,7 @@ export const SparesFinderSection = () => {
                       </span>
                     </div>
                     <div className="w-full h-1.5 bg-[#F1EFE9] rounded-full overflow-hidden">
-                      <div 
+                      <div
                         className="h-full bg-[#24583D] transition-all duration-300 rounded-full"
                         style={{ width: `${(displayedSpares.length / filteredSpares.length) * 100}%` }}
                       />
@@ -600,7 +593,7 @@ export const SparesFinderSection = () => {
             </p>
           </div>
           <a
-            href="https://wa.me/918004922476?text=Hello%20Arveer%20Impex%20Team%2C%20I%20am%20a%20dealer%20looking%20for%20bulk%20spare%20parts%20price%20lists%20and%20dealership%20terms."
+            href="https://wa.me/917352210000?text=Hello%20Arveer%20Impex%20Team%2C%20I%20am%20a%20dealer%20looking%20for%20bulk%20spare%20parts%20price%20lists%20and%20dealership%20terms."
             target="_blank"
             rel="noopener noreferrer"
             className="px-5 py-2.5 rounded-xl bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] font-bold text-xs uppercase tracking-wider transition-colors shrink-0 flex items-center gap-1.5 shadow-sm"
