@@ -40,7 +40,7 @@ router.get('/health', async (req: Request, res: Response) => {
       bucket: 'assets',
       endpoint: process.env.AWS_ENDPOINT_URL_S3,
       objectCount: files.length,
-      sampleObjects: files.slice(0, 3).map((f) => f.Key),
+      sampleObjects: files.slice(0, 3).map((f: any) => f?.Key || ''),
     };
   } catch (err: any) {
     results.services.objectStorage = {
