@@ -155,8 +155,8 @@ function ProductsContent() {
   };
 
   return (
-    <div className="pt-2 sm:pt-4 pb-20 bg-[#F5F7F1] text-[#252B27] min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-2 sm:pt-4 pb-16 sm:pb-24 bg-[#F5F7F1] text-[#252B27] min-h-screen">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Breadcrumb & Title Bar */}
         <div className="mb-6 pt-4 border-b border-[#E2E6DF] pb-5">

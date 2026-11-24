@@ -90,32 +90,32 @@ export const HeroSection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#F5F7F1] text-[#252B27] pt-4 sm:pt-6 pb-12 sm:pb-16 border-b border-[#E2E6DF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full bg-[#F5F7F1] text-[#252B27] pt-3 sm:pt-6 pb-10 sm:pb-16 border-b border-[#E2E6DF]">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Main Hero Machinery Showcase Banner */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#245B37] via-[#1E4A2E] to-[#142C1D] text-white p-6 sm:p-10 lg:p-14 shadow-card mb-8 sm:mb-12">
+        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-gradient-to-br from-[#245B37] via-[#1E4A2E] to-[#142C1D] text-white p-4 xs:p-6 sm:p-10 lg:p-14 shadow-card mb-6 sm:mb-12">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             
             {/* Left Content Column */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
               
               {/* Trust Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-4 sm:mb-6">
-                <Sparkles className="w-3.5 h-3.5 text-[#6FAF45]" />
-                <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-white/95">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-3 sm:mb-6">
+                <Sparkles className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#6FAF45]" />
+                <span className="text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-white/95">
                   Arveer Impex • Official Importer & Distributor
                 </span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.15] mb-4">
+              <h1 className="font-serif text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.18] sm:leading-[1.15] mb-3 sm:mb-4">
                 Heavy-Duty Farm Machinery & Guaranteed Genuine Spares
               </h1>
 
               {/* Subtitle */}
-              <p className="text-sm sm:text-base lg:text-lg text-[#F5F7F1]/90 font-sans leading-relaxed mb-6 sm:mb-8 max-w-2xl">
+              <p className="text-xs sm:text-base lg:text-lg text-[#F5F7F1]/90 font-sans leading-relaxed mb-5 sm:mb-8 max-w-2xl">
                 Powering Indian farms, orchards, and contractors with high-torque 170F petrol engines, high-pressure water pumps, CE-certified earth augers, and German-spec Sawking™ cutting chains.
               </p>
 
@@ -236,7 +236,7 @@ export const HeroSection = () => {
         </div>
 
         {/* 2. VALUE PROPOSITIONS & TRUST PILLARS BAR (Balwaan style) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-14">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-12">
           {trustPillars.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (

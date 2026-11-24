@@ -77,16 +77,16 @@ export const WhatsAppWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-40 font-sans">
+    <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 font-sans">
       {/* WhatsApp Trigger Button with Live Indicator */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="group relative flex items-center gap-3 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] text-white shadow-elevated transition-all duration-300 hover:scale-105 active:scale-95 border border-white/20"
+          className="group relative flex items-center gap-2 sm:gap-3 p-2.5 sm:px-4 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#1EBE5D] text-white shadow-elevated transition-all duration-300 hover:scale-105 active:scale-95 border border-white/20 cursor-pointer"
           aria-label="Chat with Arveer Impex Sales Desk on WhatsApp"
         >
           {/* Animated WhatsApp Pulse Badge */}
-          <div className="relative w-7 h-7 flex items-center justify-center">
+          <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
             <span className="absolute inset-0 rounded-full bg-white/30 animate-ping" />
             <svg
               viewBox="0 0 24 24"
@@ -106,13 +106,13 @@ export const WhatsAppWidget: React.FC = () => {
             </p>
           </div>
 
-          <span className="w-2.5 h-2.5 rounded-full bg-[#A6C96A] animate-pulse ml-1" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#A6C96A] animate-pulse ml-1 hidden sm:inline-block" />
         </button>
       )}
 
       {/* Floating Chat Modal */}
       {isOpen && (
-        <div className="w-[360px] sm:w-[400px] rounded-3xl bg-[#141A17] border border-[rgba(166,201,106,0.2)] shadow-2xl overflow-hidden flex flex-col text-[#F7F5F0] animate-in fade-in slide-in-from-bottom-5 duration-300">
+        <div className="w-[calc(100vw-32px)] max-w-[380px] rounded-3xl bg-[#141A17] border border-[rgba(166,201,106,0.2)] shadow-2xl overflow-hidden flex flex-col text-[#F7F5F0] animate-in fade-in slide-in-from-bottom-5 duration-300">
 
           {/* Header in Deep Forest Slate (#102C22) */}
           <div className="p-4 sm:p-5 bg-[#102C22] border-b border-[rgba(166,201,106,0.15)] flex items-center justify-between">

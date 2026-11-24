@@ -35,8 +35,8 @@ export const TrustAndCertificationsSection = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-16 sm:py-24 bg-[#F5F7F1] text-[#252B27] relative border-b border-[#E2E6DF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-12 sm:py-20 lg:py-24 bg-[#F5F7F1] text-[#252B27] relative border-b border-[#E2E6DF]">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">

@@ -216,11 +216,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         </div>
 
         {/* Action Buttons: Add to Order / Cart & WhatsApp Enquire */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {/* Primary Action Button */}
           <button
             onClick={handleAddToCart}
-            className={`flex-1 py-2.5 px-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 border shadow-sm cursor-pointer ${
+            className={`flex-1 py-2 sm:py-2.5 px-2 sm:px-3 rounded-xl font-bold text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1 sm:gap-1.5 border shadow-xs cursor-pointer ${
               added
                 ? 'bg-[#6FAF45] text-white border-[#6FAF45]'
                 : 'bg-[#245B37] hover:bg-[#1C472B] text-white border-[#245B37]'
@@ -228,12 +228,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
           >
             {added ? (
               <>
-                <Check className="w-4 h-4 stroke-[2.5]" />
+                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
                 <span>Added</span>
               </>
             ) : (
               <>
-                <ShoppingBag className="w-4 h-4 text-[#6FAF45]" />
+                <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#6FAF45]" />
                 <span>Add to Cart</span>
               </>
             )}
@@ -244,21 +244,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             href={whatsappInquiryUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white transition-colors shadow-sm flex items-center justify-center shrink-0 cursor-pointer"
+            className="p-2 sm:p-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white transition-colors shadow-xs flex items-center justify-center shrink-0 cursor-pointer"
             title="Inquire directly on WhatsApp"
             aria-label="WhatsApp Enquiry"
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
+            <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
           </a>
 
           {/* Direct Product Link */}
           <Link
             href={`/products/${product.id}`}
-            className="p-2.5 rounded-xl bg-[#F5F7F1] hover:bg-[#EAEFE6] text-[#252B27] hover:text-[#245B37] border border-[#E2E6DF] transition-colors flex items-center justify-center shrink-0 cursor-pointer"
+            className="p-2 sm:p-2.5 rounded-xl bg-[#F5F7F1] hover:bg-[#EAEFE6] text-[#252B27] hover:text-[#245B37] border border-[#E2E6DF] transition-colors flex items-center justify-center shrink-0 cursor-pointer"
             title="View Specifications & Spares"
             aria-label="View Details"
           >
-            <Eye className="w-4 h-4" />
+            <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </Link>
         </div>
       </div>

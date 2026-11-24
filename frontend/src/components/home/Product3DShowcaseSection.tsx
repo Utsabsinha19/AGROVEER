@@ -255,16 +255,16 @@ export const Product3DShowcaseSection = () => {
   )}`;
 
   return (
-    <section id="showcase" className="py-16 sm:py-24 bg-[#FFFFFF] text-[#252B27] border-b border-[#E2E6DF]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="showcase" className="py-12 sm:py-20 lg:py-24 bg-[#FFFFFF] text-[#252B27] border-b border-[#E2E6DF]">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EAEFE6] text-[#245B37] text-xs uppercase tracking-wider font-bold mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-[#EAEFE6] text-[#245B37] text-[11px] sm:text-xs uppercase tracking-wider font-bold mb-2.5">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Interactive Machinery Specification & Cutaway</span>
           </div>
-          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#252B27] leading-tight mb-3">
+          <h2 className="font-serif text-xl xs:text-2xl sm:text-4xl font-bold text-[#252B27] leading-tight mb-2 sm:mb-3">
             Inspect Agricultural Power Equipment
           </h2>
           <p className="text-xs sm:text-sm text-[#4E5550]">
@@ -273,7 +273,7 @@ export const Product3DShowcaseSection = () => {
         </div>
 
         {/* Machine Selector Tabs */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 mb-8 scrollbar-none">
+        <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto pb-3 mb-6 sm:mb-8 scrollbar-none">
           {SHOWCASE_MACHINES.map((machine, idx) => (
             <button
               key={machine.id}
@@ -281,44 +281,44 @@ export const Product3DShowcaseSection = () => {
                 setActiveItemIndex(idx);
                 setSelectedHotspot(0);
               }}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border cursor-pointer ${
+              className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap border cursor-pointer ${
                 activeItemIndex === idx
                   ? 'bg-[#245B37] text-white border-[#245B37] shadow-sm'
                   : 'bg-[#F5F7F1] text-[#252B27] hover:bg-[#EAEFE6] border-[#E2E6DF]'
               }`}
             >
               <span>{machine.shortName}</span>
-              <span className="ml-2 text-[10px] opacity-80 font-mono">({machine.modelCode})</span>
+              <span className="ml-1.5 sm:ml-2 text-[10px] opacity-80 font-mono">({machine.modelCode})</span>
             </button>
           ))}
         </div>
 
         {/* Main Inspection Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#F5F7F1] rounded-3xl p-6 sm:p-10 border border-[#E2E6DF]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center bg-[#F5F7F1] rounded-2xl sm:rounded-3xl p-4 xs:p-6 sm:p-8 lg:p-10 border border-[#E2E6DF]">
           
           {/* Left Column: Product Photo & Hotspots */}
           <div className="lg:col-span-6 flex flex-col items-center">
             
             {/* High-Res Product Image Container */}
-            <div className="relative w-full h-72 sm:h-96 rounded-2xl bg-white border border-[#E2E6DF] p-6 flex items-center justify-center shadow-soft overflow-hidden group">
+            <div className="relative w-full h-56 xs:h-72 sm:h-80 lg:h-96 rounded-2xl bg-white border border-[#E2E6DF] p-4 sm:p-6 flex items-center justify-center shadow-soft overflow-hidden group">
               <Image
                 src={currentMachine.image}
                 alt={currentMachine.name}
                 fill
-                className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                className="object-contain p-2 sm:p-4 group-hover:scale-105 transition-transform duration-500"
               />
               
-              <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-[#EAEFE6] text-[#245B37] border border-[#245B37]/30 shadow-xs">
+              <span className="absolute top-3 left-3 sm:top-4 sm:left-4 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-bold bg-[#EAEFE6] text-[#245B37] border border-[#245B37]/30 shadow-xs">
                 {currentMachine.specBadge}
               </span>
             </div>
 
             {/* Feature Hotspots Pill Selector */}
-            <div className="w-full mt-4">
-              <span className="text-[11px] font-bold uppercase tracking-wider text-[#767E78] block mb-2 text-center sm:text-left">
+            <div className="w-full mt-3 sm:mt-4">
+              <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#767E78] block mb-2 text-center sm:text-left">
                 Click Feature Hotspot to Inspect:
               </span>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-1 xs:grid-cols-2 gap-2">
                 {currentMachine.hotspots.map((h, hIdx) => (
                   <button
                     key={h.id}

@@ -127,8 +127,8 @@ export function ProductDetailClient({ productId }: ProductDetailClientProps) {
   };
 
   return (
-    <div className="pt-4 sm:pt-6 pb-24 bg-[#F5F7F1] text-[#252B27] min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-3 sm:pt-6 pb-20 sm:pb-28 bg-[#F5F7F1] text-[#252B27] min-h-screen">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8">
 
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-xs text-[#767E78] mb-6 font-medium">

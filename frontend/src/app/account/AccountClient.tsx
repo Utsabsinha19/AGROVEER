@@ -300,7 +300,7 @@ export function AccountClient() {
                   className="px-4 py-2.5 bg-[#A6C96A] hover:bg-[#8eb852] text-[#102C22] rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center gap-1.5 cursor-pointer"
                 >
                   <LogIn className="w-3.5 h-3.5 text-[#102C22]" />
-                  <span>Sign In with OTP</span>
+                  <span>Sign In to Account</span>
                 </button>
               )}
               <Link
@@ -347,16 +347,16 @@ export function AccountClient() {
                   Guest Session Active
                 </p>
                 <p className="text-[11px] text-amber-800/80">
-                  Log in or register with Neon OTP to permanently link your orders, track consignments, and sync commercial GST credentials.
+                  Log in or register with your email ID & password to permanently link your orders, track consignments, and sync commercial GST credentials.
                 </p>
               </div>
             </div>
             <button
               type="button"
               onClick={() => openAuthModal('signin')}
-              className="px-4 py-2 bg-[#24583D] text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-[#1B4731] transition-all shadow-sm"
+              className="px-4 py-2 bg-[#24583D] text-white rounded-xl text-xs font-bold whitespace-nowrap hover:bg-[#1B4731] transition-all shadow-sm cursor-pointer"
             >
-              Sign In with OTP
+              Sign In to Account
             </button>
           </div>
         ) : (

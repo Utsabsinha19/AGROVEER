@@ -231,8 +231,8 @@ export const SparesFinderSection = () => {
   };
 
   return (
-    <section id="spares-finder" className="py-20 sm:py-28 bg-[#F7F5F0] text-[#141A17] relative overflow-hidden border-t border-[rgba(166,201,106,0.18)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="spares-finder" className="py-14 sm:py-20 lg:py-28 bg-[#F5F7F1] text-[#252B27] relative overflow-hidden border-t border-[#E2E6DF]">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">

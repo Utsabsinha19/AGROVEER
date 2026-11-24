@@ -175,8 +175,8 @@ export function WishlistClient() {
                     </div>
 
                     {/* Interactive Quantity Stepper & Add to Cart */}
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50">
+                    <div className="flex flex-wrap xs:flex-nowrap items-center gap-2">
+                      <div className="flex items-center border border-gray-300 rounded-xl overflow-hidden bg-gray-50 shrink-0">
                         <button
                           onClick={() => handleUpdateQty(product.id, -1)}
                           className="px-2.5 py-2 text-gray-600 hover:bg-gray-200 transition-colors"
@@ -198,7 +198,7 @@ export function WishlistClient() {
 
                       <button
                         onClick={() => handleAddToCart(product)}
-                        className={`flex-1 py-2.5 px-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-sm ${
+                        className={`flex-1 min-w-[130px] py-2.5 px-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 shadow-sm ${
                           isAdded
                             ? 'bg-green-700 text-white'
                             : 'bg-[#24583D] hover:bg-[#1B4731] text-white'

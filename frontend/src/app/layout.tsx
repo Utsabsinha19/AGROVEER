@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
@@ -11,6 +11,13 @@ import { CatalogListingModal } from '@/components/products/CatalogListingModal';
 import { AuthModal } from '@/components/auth/AuthModal';
 import { LocationModal } from '@/components/common/LocationModal';
 import { LanguageFontManager } from '@/components/common/LanguageFontManager';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#245B37',
+};
 
 const playfair = Playfair_Display({
   subsets: ['latin'],

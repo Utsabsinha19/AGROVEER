@@ -147,24 +147,24 @@ export const Navbar = () => {
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-3 sm:gap-6">
           
           {/* Brand Logo & Tagline */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0 min-w-0" title="Agroveer & Sawking — Arveer Impex Home">
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-[#F5F7F1] flex items-center justify-center border border-[#E2E6DF] shadow-sm group-hover:scale-105 transition-transform shrink-0 p-1">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0 min-w-0" title="Agroveer & Sawking — Arveer Impex Home">
+            <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-[#F5F7F1] flex items-center justify-center border border-[#E2E6DF] shadow-xs group-hover:scale-105 transition-transform shrink-0 p-1">
               <Image
                 src="/logo.png"
                 alt="Agroveer & Sawking Logo"
-                width={48}
-                height={48}
+                width={44}
+                height={44}
                 priority
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="flex flex-col justify-center min-w-0">
-              <span className="font-serif text-base sm:text-xl font-bold tracking-tight text-[#252B27] group-hover:text-[#245B37] transition-colors leading-none mb-1">
+              <span className="font-serif text-sm sm:text-base lg:text-xl font-bold tracking-tight text-[#252B27] group-hover:text-[#245B37] transition-colors leading-none mb-0.5 sm:mb-1">
                 <span className="text-[#245B37]">AGROVEER</span>{' '}
-                <span className="font-sans text-xs font-normal text-[#6FAF45]">&</span>{' '}
+                <span className="font-sans text-[11px] sm:text-xs font-normal text-[#6FAF45]">&</span>{' '}
                 <span className="text-[#D4AF37]">SAWKING</span>
               </span>
-              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase text-[#4E5550] font-sans font-semibold leading-none truncate">
+              <span className="text-[8.5px] sm:text-[10px] tracking-wider uppercase text-[#4E5550] font-sans font-semibold leading-none truncate hidden xs:block">
                 Agricultural Power Equipment
               </span>
             </div>
@@ -256,13 +256,13 @@ export const Navbar = () => {
             {/* Saved Machinery / Wishlist */}
             <Link
               href="/wishlist"
-              className="relative p-2.5 rounded-xl bg-[#F5F7F1] hover:bg-[#EAEFE6] border border-[#E2E6DF] text-[#252B27] hover:text-[#245B37] transition-colors flex items-center justify-center shrink-0 cursor-pointer"
+              className="relative p-2 sm:p-2.5 rounded-xl bg-[#F5F7F1] hover:bg-[#EAEFE6] border border-[#E2E6DF] text-[#252B27] hover:text-[#245B37] transition-colors flex items-center justify-center shrink-0 cursor-pointer"
               title="Saved Machinery & Wishlist"
               aria-label="Wishlist"
             >
               <Heart className={`w-4 h-4 ${wishlistIds.length > 0 ? 'text-[#D64527] fill-[#D64527]' : 'text-[#4E5550]'}`} />
               {wishlistIds.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#D64527] text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
+                <span className="absolute -top-1 -right-1 bg-[#D64527] text-white font-bold text-[8.5px] w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">
                   {wishlistIds.length}
                 </span>
               )}
@@ -302,14 +302,14 @@ export const Navbar = () => {
             {/* Shopping Cart Button (Vibrant & High Converting) */}
             <button
               onClick={toggleCart}
-              className="relative px-3.5 py-2 rounded-xl bg-[#245B37] hover:bg-[#1C472B] text-white shadow-sm transition-all active:scale-95 flex items-center gap-2 shrink-0 cursor-pointer"
+              className="relative p-2 sm:px-3.5 sm:py-2 rounded-xl bg-[#245B37] hover:bg-[#1C472B] text-white shadow-xs transition-all active:scale-95 flex items-center gap-1.5 sm:gap-2 shrink-0 cursor-pointer"
               aria-label="Shopping Cart"
               title="View Cart & Quote"
             >
               <ShoppingBag className="w-4 h-4 text-[#6FAF45]" />
               <span className="hidden sm:inline text-xs font-bold">Cart</span>
               {itemCount > 0 && (
-                <span className="bg-[#E99A32] text-white font-bold text-[10px] px-1.5 py-0.2 rounded-full min-w-[18px] text-center">
+                <span className="bg-[#E99A32] text-white font-bold text-[9.5px] sm:text-[10px] px-1.5 py-0.2 rounded-full min-w-[16px] sm:min-w-[18px] text-center">
                   {itemCount}
                 </span>
               )}

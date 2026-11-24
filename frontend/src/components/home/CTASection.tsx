@@ -7,9 +7,9 @@ import { ArrowRight, Sparkles, MessageCircle, Phone, FileText } from 'lucide-rea
 
 export const CTASection = () => {
   return (
-    <section className="py-16 sm:py-24 bg-[#F5F7F1] text-[#252B27] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="rounded-3xl bg-[#245B37] text-white p-8 sm:p-14 lg:p-16 text-center flex flex-col items-center shadow-card relative overflow-hidden">
+    <section className="py-12 sm:py-20 lg:py-24 bg-[#F5F7F1] text-[#252B27] relative overflow-hidden">
+      <div className="max-w-[1360px] mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+        <div className="rounded-2xl sm:rounded-3xl bg-[#245B37] text-white p-6 xs:p-8 sm:p-12 lg:p-16 text-center flex flex-col items-center shadow-card relative overflow-hidden">
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-[#6FAF45] text-xs uppercase tracking-widest font-bold mb-5">
             <Sparkles className="w-3.5 h-3.5" />

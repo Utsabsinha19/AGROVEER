@@ -388,7 +388,7 @@ export default function CheckoutPage() {
               </div>
             )}
 
-            {/* Neon Authenticated Buyer Banner or Quick OTP Sign In Callout */}
+            {/* Neon Authenticated Buyer Banner or Sign In Callout */}
             {profile ? (
               <div className="p-4 rounded-2xl bg-[#24583D]/10 border border-[#24583D]/30 flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
@@ -416,7 +416,7 @@ export default function CheckoutPage() {
                     <span>Have a Registered Buyer or Dealership Account?</span>
                   </span>
                   <span className="text-[11px] text-[#4F5D54] block mt-0.5">
-                    Sign in with real-time OTP to sync dispatch records & warranty to your account.
+                    Sign in with your email & password to sync dispatch records & warranty to your account.
                   </span>
                 </div>
                 <button
@@ -425,7 +425,7 @@ export default function CheckoutPage() {
                   className="px-3.5 py-2 rounded-xl bg-[#24583D] hover:bg-[#1B4731] text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer shadow-sm shrink-0 flex items-center justify-center gap-1.5"
                 >
                   <Lock className="w-3.5 h-3.5 text-[#A6C96A]" />
-                  <span>Sign In with OTP</span>
+                  <span>Sign In to Account</span>
                 </button>
               </div>
             )}

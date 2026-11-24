@@ -75,13 +75,13 @@ export default function CartPage() {
   return (
     <div className="pt-28 sm:pt-36 pb-24 bg-offwhite text-charcoal min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-sand-border">
-          <h1 className="font-serif text-3xl sm:text-4xl font-normal text-charcoal">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-4 border-b border-sand-border gap-3">
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-charcoal">
             Machinery & Equipment Cart ({items.length})
           </h1>
           <button
             onClick={clearCart}
-            className="text-xs text-charcoal-muted hover:text-red-500 transition-colors"
+            className="text-xs text-charcoal-muted hover:text-red-500 transition-colors self-start sm:self-auto"
           >
             Clear Entire Bag
           </button>
@@ -142,7 +142,7 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between w-full sm:w-auto gap-6">
+                <div className="flex flex-wrap sm:flex-nowrap items-center justify-between w-full sm:w-auto gap-3 sm:gap-6 pt-3 sm:pt-0 border-t sm:border-t-0 border-sand-border/50">
                   {/* Quantity Stepper */}
                   <div className="flex items-center border border-sand-border rounded-xl bg-offwhite p-1">
                     <button
@@ -163,7 +163,7 @@ export default function CartPage() {
                   </div>
 
                   {/* Total price for this item */}
-                  <span className="font-serif text-lg font-bold text-botanical min-w-[100px] text-right">
+                  <span className="font-serif text-base sm:text-lg font-bold text-botanical sm:min-w-[100px] text-right">
                     {formatCurrency(item.product.price * item.quantity)}
                   </span>
 
