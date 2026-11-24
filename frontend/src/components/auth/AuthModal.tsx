@@ -84,7 +84,7 @@ export const AuthModal: React.FC = () => {
     setLoading(false);
 
     if (res.success) {
-      setSuccessMsg('Authentication successful! Welcome to Arveer Impex.');
+      setSuccessMsg('Authentication successful! Welcome to Agroveer.');
       setTimeout(() => {
         closeAuthModal();
         resetForm();
@@ -153,66 +153,66 @@ export const AuthModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4 bg-forest-950/85 backdrop-blur-md animate-in fade-in duration-200 font-sans">
+    <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200 font-sans">
       {/* Backdrop */}
       <div className="fixed inset-0" onClick={closeAuthModal} />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-md bg-[#102C22] border border-[rgba(166,201,106,0.35)] rounded-3xl shadow-2xl overflow-hidden z-10 text-[#F7F5F0] flex flex-col max-h-[92vh]">
+      <div className="relative w-full max-w-md bg-white border border-[#E2E6DF] rounded-3xl shadow-2xl overflow-hidden z-10 text-[#252B27] flex flex-col max-h-[92vh]">
         
         {/* Modal Header */}
-        <div className="p-5 sm:p-6 bg-[#0E221B] border-b border-[rgba(166,201,106,0.18)] relative">
+        <div className="p-5 sm:p-6 bg-[#F5F7F1] border-b border-[#E2E6DF] relative">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#14261F] border border-[#A6C96A]/40 flex items-center justify-center p-1 shadow-sm">
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#E2E6DF] flex items-center justify-center p-1 shadow-xs">
                 <Image
                   src="/logo.png"
-                  alt="Agroveer & Sawking"
+                  alt="Agroveer & Sawking Logo"
                   width={36}
                   height={36}
                   className="w-full h-full object-contain"
                 />
               </div>
               <div>
-                <h3 className="font-serif text-lg font-bold text-[#F7F5F0]">
-                  Buyer & Dealer Portal
+                <h3 className="font-serif text-base sm:text-lg font-bold text-[#252B27]">
+                  Agroveer™ Buyer & Dealer Portal
                 </h3>
-                <p className="text-[11px] text-[#A6C96A] font-mono flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-[#A6C96A]" />
-                  <span>Neon Lakebase Postgres Protected</span>
+                <p className="text-[11px] text-[#245B37] font-semibold flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#245B37]" />
+                  <span>Secure Neon Postgres Session</span>
                 </p>
               </div>
             </div>
 
             <button
               onClick={closeAuthModal}
-              className="p-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+              className="p-1.5 rounded-xl bg-white hover:bg-[#EAEFE6] text-[#767E78] hover:text-[#252B27] border border-[#E2E6DF] transition-colors cursor-pointer"
               aria-label="Close modal"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Tab Selector */}
-          <div className="flex gap-2 mt-4 p-1 rounded-xl bg-[#14261F] border border-[rgba(166,201,106,0.2)]">
+          <div className="flex gap-2 mt-4 p-1 rounded-xl bg-white border border-[#E2E6DF]">
             <button
               type="button"
               onClick={() => { setAuthMode('signin'); resetForm(); }}
-              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
+              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 authMode === 'signin'
-                  ? 'bg-[#24583D] text-[#F7F5F0] shadow-sm'
-                  : 'text-[#E9E1CC]/70 hover:text-white'
+                  ? 'bg-[#245B37] text-white shadow-xs'
+                  : 'text-[#4E5550] hover:text-[#252B27]'
               }`}
             >
-              Sign In
+              Sign In with Password
             </button>
             <button
               type="button"
               onClick={() => { setAuthMode('register'); resetForm(); }}
-              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
+              className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 authMode === 'register'
-                  ? 'bg-[#24583D] text-[#F7F5F0] shadow-sm'
-                  : 'text-[#E9E1CC]/70 hover:text-white'
+                  ? 'bg-[#245B37] text-white shadow-xs'
+                  : 'text-[#4E5550] hover:text-[#252B27]'
               }`}
             >
               Create Account
@@ -224,15 +224,15 @@ export const AuthModal: React.FC = () => {
         <div className="p-5 sm:p-6 overflow-y-auto space-y-4">
           
           {error && (
-            <div className="p-3 rounded-xl bg-red-900/40 border border-red-500/50 text-red-200 text-xs flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
+            <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {successMsg && (
-            <div className="p-3 rounded-xl bg-green-900/40 border border-[#A6C96A]/50 text-green-200 text-xs flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#A6C96A] shrink-0" />
+            <div className="p-3 rounded-xl bg-green-50 border border-green-200 text-green-800 text-xs flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#245B37] shrink-0" />
               <span>{successMsg}</span>
             </div>
           )}
@@ -243,11 +243,11 @@ export const AuthModal: React.FC = () => {
               
               {/* Email Address */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1.5">
+                <label className="block text-xs font-semibold text-[#252B27] mb-1.5">
                   Email Address *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#767E78]">
                     <Mail className="w-4 h-4" />
                   </div>
                   <input
@@ -256,18 +256,18 @@ export const AuthModal: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@company.com or your-email@gmail.com"
-                    className="w-full pl-9 pr-3 py-2.5 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                    className="w-full pl-9 pr-3 py-2.5 bg-[#F5F7F1] border border-[#E2E6DF] rounded-xl text-xs sm:text-sm text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37] transition-colors"
                   />
                 </div>
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1.5">
+                <label className="block text-xs font-semibold text-[#252B27] mb-1.5">
                   Password *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#767E78]">
                     <Lock className="w-4 h-4" />
                   </div>
                   <input
@@ -276,12 +276,12 @@ export const AuthModal: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
-                    className="w-full pl-9 pr-10 py-2.5 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                    className="w-full pl-9 pr-10 py-2.5 bg-[#F5F7F1] border border-[#E2E6DF] rounded-xl text-xs sm:text-sm text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37] transition-colors"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/50 hover:text-white transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#767E78] hover:text-[#252B27]"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -292,7 +292,7 @@ export const AuthModal: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 bg-[#A6C96A] hover:bg-[#b8da7b] text-[#102C22] font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer"
+                className="w-full py-3 px-4 bg-[#245B37] hover:bg-[#1C472B] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 cursor-pointer"
               >
                 {loading ? (
                   <>
@@ -309,12 +309,12 @@ export const AuthModal: React.FC = () => {
 
               {/* Bottom Toggle */}
               <div className="text-center pt-2">
-                <p className="text-xs text-[#E9E1CC]/70">
-                  Don't have an account?{' '}
+                <p className="text-xs text-[#4E5550]">
+                  Don&apos;t have an account?{' '}
                   <button
                     type="button"
                     onClick={() => { setAuthMode('register'); resetForm(); }}
-                    className="text-[#A6C96A] font-bold hover:underline"
+                    className="text-[#245B37] font-bold hover:underline"
                   >
                     Register Account
                   </button>
@@ -328,17 +328,17 @@ export const AuthModal: React.FC = () => {
               
               {/* Account Type Selector */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                <label className="block text-xs font-semibold text-[#252B27] mb-1">
                   Account Classification *
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => setRole('CUSTOMER')}
-                    className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                    className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                       role === 'CUSTOMER'
-                        ? 'bg-[#24583D] border-[#A6C96A] text-[#F7F5F0]'
-                        : 'bg-[#0E221B] border-white/10 text-white/70 hover:text-white'
+                        ? 'bg-[#245B37] border-[#245B37] text-white shadow-xs'
+                        : 'bg-[#F5F7F1] border-[#E2E6DF] text-[#4E5550] hover:text-[#252B27]'
                     }`}
                   >
                     <User className="w-3.5 h-3.5" />
@@ -348,131 +348,112 @@ export const AuthModal: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setRole('DEALER')}
-                    className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                    className={`py-2 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
                       role === 'DEALER'
-                        ? 'bg-[#24583D] border-[#A6C96A] text-[#F7F5F0]'
-                        : 'bg-[#0E221B] border-white/10 text-white/70 hover:text-white'
+                        ? 'bg-[#245B37] border-[#245B37] text-white shadow-xs'
+                        : 'bg-[#F5F7F1] border-[#E2E6DF] text-[#4E5550] hover:text-[#252B27]'
                     }`}
                   >
                     <Building2 className="w-3.5 h-3.5" />
-                    <span>B2B Dealer / Wholesale</span>
+                    <span>Machinery Dealer</span>
                   </button>
                 </div>
               </div>
 
               {/* Full Name */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                  Full Name *
+                <label className="block text-xs font-semibold text-[#252B27] mb-1">
+                  Full Name / Contact Person *
                 </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
-                    <User className="w-4 h-4" />
-                  </div>
-                  <input
-                    type="text"
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="e.g. Ramesh Patil or Rajesh Sharma"
-                    className="w-full pl-9 pr-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
-                  />
-                </div>
+                <input
+                  type="text"
+                  required
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="e.g. Ramesh Patil"
+                  className="w-full px-3 py-2 bg-[#F5F7F1] border border-[#E2E6DF] rounded-xl text-xs text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37]"
+                />
               </div>
 
               {/* Email Address */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
+                <label className="block text-xs font-semibold text-[#252B27] mb-1">
                   Email Address *
                 </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@company.com or email@example.com"
-                    className="w-full pl-9 pr-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
-                  />
-                </div>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@example.com"
+                  className="w-full px-3 py-2 bg-[#F5F7F1] border border-[#E2E6DF] rounded-xl text-xs text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37]"
+                />
+              </div>
+
+              {/* Phone Number */}
+              <div>
+                <label className="block text-xs font-semibold text-[#252B27] mb-1">
+                  Mobile / WhatsApp Number
+                </label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+91 98765 43210"
+                  className="w-full px-3 py-2 bg-[#F5F7F1] border border-[#E2E6DF] rounded-xl text-xs text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37]"
+                />
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                  Create Password * (min. 6 characters)
+                <label className="block text-xs font-semibold text-[#252B27] mb-1">
+                  Create Password (min 6 chars) *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
-                    <Lock className="w-4 h-4" />
-                  </div>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Create a strong password"
-                    className="w-full pl-9 pr-10 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                    placeholder="Enter secure password"
+                    className="w-full px-3 pr-10 py-2 bg-[#F5F7F1] border border-[#E2E6DF] rounded-xl text-xs text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37]"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-white/50 hover:text-white transition-colors"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#767E78] hover:text-[#252B27]"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
                   </button>
                 </div>
               </div>
 
-              {/* Mobile Number */}
-              <div>
-                <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                  Mobile / WhatsApp Number <span className="text-white/40 font-normal">(Optional, for logistics updates)</span>
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#A6C96A]">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="e.g. +91 98765 43210"
-                    className="w-full pl-9 pr-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
-                  />
-                </div>
-              </div>
-
-              {/* B2B Dealer Fields */}
+              {/* Dealer-Specific Fields */}
               {role === 'DEALER' && (
-                <div className="space-y-2.5 pt-1 border-t border-[rgba(166,201,106,0.2)]">
+                <div className="p-3 rounded-xl bg-[#F5F7F1] border border-[#E2E6DF] space-y-2.5">
                   <div>
-                    <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                      Agro Dealership / Firm Name *
+                    <label className="block text-xs font-semibold text-[#252B27] mb-1">
+                      Dealership / Firm Name *
                     </label>
                     <input
                       type="text"
                       required
                       value={companyName}
                       onChange={(e) => setCompanyName(e.target.value)}
-                      placeholder="e.g. Kisan Agri Machineries & Tools"
-                      className="w-full px-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                      placeholder="e.g. Kisan Krishi Kendra"
+                      className="w-full px-3 py-1.5 bg-white border border-[#E2E6DF] rounded-lg text-xs text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37]"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-[#E9E1CC] mb-1">
-                      GSTIN (Optional, for 18% Input Tax Credit)
+                    <label className="block text-xs font-semibold text-[#252B27] mb-1">
+                      GSTIN Number (Optional)
                     </label>
                     <input
                       type="text"
-                      maxLength={15}
                       value={gstin}
                       onChange={(e) => setGstin(e.target.value.toUpperCase())}
                       placeholder="e.g. 27AAAAA0000A1Z5"
-                      className="w-full px-3 py-2 bg-[#0E221B] border border-[rgba(166,201,106,0.3)] rounded-xl text-xs sm:text-sm text-[#F7F5F0] uppercase font-mono placeholder-[#E9E1CC]/40 focus:outline-none focus:border-[#A6C96A] transition-colors"
+                      className="w-full px-3 py-1.5 bg-white border border-[#E2E6DF] rounded-lg text-xs text-[#252B27] placeholder-[#767E78] focus:outline-none focus:border-[#245B37]"
                     />
                   </div>
                 </div>
@@ -482,16 +463,16 @@ export const AuthModal: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 bg-[#A6C96A] hover:bg-[#b8da7b] text-[#102C22] font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 cursor-pointer mt-2"
+                className="w-full py-3 px-4 bg-[#245B37] hover:bg-[#1C472B] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-50 cursor-pointer mt-2"
               >
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Creating Account...</span>
+                    <span>Creating account...</span>
                   </>
                 ) : (
                   <>
-                    <span>Create Account & Enter</span>
+                    <span>Register Account</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 )}
@@ -499,12 +480,12 @@ export const AuthModal: React.FC = () => {
 
               {/* Bottom Toggle */}
               <div className="text-center pt-1">
-                <p className="text-xs text-[#E9E1CC]/70">
+                <p className="text-xs text-[#4E5550]">
                   Already have an account?{' '}
                   <button
                     type="button"
                     onClick={() => { setAuthMode('signin'); resetForm(); }}
-                    className="text-[#A6C96A] font-bold hover:underline"
+                    className="text-[#245B37] font-bold hover:underline"
                   >
                     Sign In
                   </button>
@@ -514,52 +495,8 @@ export const AuthModal: React.FC = () => {
             </form>
           )}
 
-          {/* Social Divider */}
-          <div className="relative py-2">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/10" />
-            </div>
-            <div className="relative flex justify-center text-[10px] uppercase font-mono tracking-wider">
-              <span className="bg-[#102C22] px-2 text-[#E9E1CC]/60">
-                OR
-              </span>
-            </div>
-          </div>
-
-          {/* Google Sign-in */}
-          <button
-            type="button"
-            onClick={handleGoogleSignIn}
-            disabled={loading}
-            className="w-full py-2.5 px-4 bg-white/5 hover:bg-white/10 border border-white/15 rounded-xl text-xs font-semibold text-[#F7F5F0] transition-colors flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-50"
-          >
-            <svg className="w-4 h-4" viewBox="0 0 24 24">
-              <path
-                fill="#EA4335"
-                d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.4 9 5 12 5z"
-              />
-              <path
-                fill="#4285F4"
-                d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"
-              />
-              <path
-                fill="#FBBC05"
-                d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.2s.7 5.5 1.9 7.9l3.7-2.9c-.2-.7-.3-1.5-.3-2.4z"
-              />
-              <path
-                fill="#34A853"
-                d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2-6.4-4.8L1.9 16.9C3.7 20.6 7.5 23.5 12 23.5z"
-              />
-            </svg>
-            <span>Continue with Google</span>
-          </button>
-
-          {/* Privacy Note */}
-          <p className="text-[10px] text-center text-[#E9E1CC]/50 leading-relaxed pt-1">
-            By signing in, you agree to Arveer Impex Commercial Dealer Terms & Privacy Policy.
-          </p>
-
         </div>
+
       </div>
     </div>
   );

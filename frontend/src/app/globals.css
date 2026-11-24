@@ -5,22 +5,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #F7F5F0; /* Warm Field Sand */
-  --foreground: #141A17; /* Cast Steel Dark */
-  --header-nav: #102C22; /* Deep Forest Slate */
-  --surface-dark: #141A17; /* Cast Steel Dark */
-  --surface-light: #F7F5F0; /* Warm Field Sand */
-  --cta-primary: #24583D; /* Harvest Botanical Green */
-  --cta-secondary: #A6C96A; /* Fresh Leaf Lime */
-  --whatsapp: #25D366; /* WhatsApp Green */
-  --sawking-gold: #D4AF37; /* Chisel Gold */
-  --agroveer-vermilion: #D64527; /* Engine Vermilion */
-  --tech-border: rgba(166, 201, 106, 0.15); /* Muted Moss / Steel */
+  --primary: #245B37; /* Forest Green */
+  --secondary: #6FAF45; /* Leaf Green */
+  --background: #F5F7F1; /* Warm Off-white */
+  --surface: #FFFFFF; /* Surface White */
+  --foreground: #252B27; /* Charcoal */
+  --accent: #E99A32; /* Harvest Orange */
+  --header-nav: #245B37;
+  --surface-dark: #1C472B;
+  --surface-light: #F5F7F1;
+  --cta-primary: #245B37;
+  --cta-secondary: #6FAF45;
+  --whatsapp: #25D366;
+  --sawking-gold: #D4AF37;
+  --agroveer-vermilion: #D64527;
+  --tech-border: #E2E6DF;
 }
 
 body {
-  color: #141A17;
-  background-color: #F7F5F0;
+  color: #252B27;
+  background-color: #F5F7F1;
   font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
 }
@@ -58,62 +62,57 @@ body {
 }
 
 ::selection {
-  background-color: #A6C96A;
-  color: #102C22;
+  background-color: #6FAF45;
+  color: #FFFFFF;
 }
 
-/* Custom technical soft scrollbars */
+/* Clean accessible scrollbars */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F5F0;
+  background: #F5F7F1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #24583D;
+  background: #245B37;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1B4731;
+  background: #1C472B;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Radial dark vignette strictly for the 3D Hero scene */
-.bg-radial-vignette {
-  background: radial-gradient(circle at center, transparent 35%, rgba(16, 44, 34, 0.95) 100%);
-}
-
 /* Technical rules and borders utility */
 .border-technical {
-  border-color: rgba(166, 201, 106, 0.15);
+  border-color: #E2E6DF;
 }
 
 .bg-surface-dark {
-  background-color: #141A17;
+  background-color: #1C472B;
 }
 
 .bg-surface-light {
-  background-color: #F7F5F0;
+  background-color: #F5F7F1;
 }
 
 /* Brand Badge Utilities */
 .badge-sawking-gold {
   background-color: rgba(212, 175, 55, 0.12);
-  color: #D4AF37;
+  color: #9E7D17;
   border: 1px solid rgba(212, 175, 55, 0.35);
 }
 
 .badge-agroveer-vermilion {
-  background-color: rgba(214, 69, 39, 0.12);
+  background-color: rgba(214, 69, 39, 0.1);
   color: #D64527;
-  border: 1px solid rgba(214, 69, 39, 0.35);
+  border: 1px solid rgba(214, 69, 39, 0.3);
 }
 
 .btn-whatsapp-direct {
@@ -140,7 +139,7 @@ img, svg, video, canvas {
 /* Touch-friendly Tap Targets on Touch Devices */
 @media (pointer: coarse) {
   button, a {
-    min-height: 38px;
+    min-height: 40px;
   }
 }
 
@@ -149,7 +148,7 @@ img, svg, video, canvas {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }
 

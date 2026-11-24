@@ -58,123 +58,125 @@ export const BrandStorySection = () => {
       image: '/images/products/agroveer-170f-recoil-starter-assembly.jpg',
       highlights: [
         'Visual Spares Compatibility Engine eliminates returned orders and incorrect sizing',
-        'Wholesale B2B master crates packaged for rural agricultural dealership networks',
-        'Transparent 5% GST invoicing with itemized part SKU tracking'
+        'Same-day freight dispatch across all key agricultural transport hubs',
+        'Clear GST-compliant billing with full dealer input tax credit'
       ],
-      badge: 'Arveer Spares Guarantee'
+      badge: 'Guaranteed Spares'
     }
   ];
 
   return (
-    <section id="story" className="py-20 sm:py-32 bg-offwhite text-charcoal relative overflow-hidden border-t border-sand-border">
+    <section id="story" className="py-16 sm:py-24 bg-[#FFFFFF] text-[#252B27] border-b border-[#E2E6DF]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Editorial Section Header */}
-        <div className="max-w-3xl mb-14 sm:mb-20">
-          <span className="text-botanical font-sans text-xs tracking-[0.25em] uppercase font-bold block mb-3">
-            ARVEER IMPEX • CORPORATE HERITAGE
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <span className="text-[#245B37] font-sans text-xs tracking-[0.25em] uppercase font-bold block mb-2">
+            THREE ENGINEERING PILLARS
           </span>
-          <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-tight mb-6">
-            <span className="text-charcoal">Built for Tough Work.</span>{' '}
-            <span className="italic font-serif text-botanical font-normal">
-              Trusted by Farmers.
-            </span>
+          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#252B27] leading-tight mb-3">
+            Why Indian Farmers & Dealers Trust Arveer Impex
           </h2>
-          <p className="text-base sm:text-lg text-charcoal-muted font-sans leading-relaxed">
-            As the authorized importer and distributor for <strong>Agroveer</strong> (&ldquo;Kisan Ki Pasand&rdquo;) and <strong>Sawking</strong> (&ldquo;German Quality&rdquo;), Arveer Impex supplies heavy-duty agricultural machinery, cutting consumables, and genuine spare parts across India.
+          <p className="text-xs sm:text-sm text-[#4E5550]">
+            Combining direct container import efficiency, European CE safety conformity, and an exhaustive domestic spare parts ecosystem.
           </p>
         </div>
 
-        {/* 3 Pillar Interactive Display */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          {/* Left Column: Pillar Navigation Cards */}
-          <div className="lg:col-span-5 space-y-4">
-            {pillars.map((pillar, idx) => {
-              const Icon = pillar.icon;
-              const isActive = activePillar === idx;
-              return (
-                <button
-                  key={pillar.id}
-                  onClick={() => setActivePillar(idx)}
-                  className={`w-full p-5 sm:p-6 rounded-3xl text-left transition-all duration-300 border flex flex-col justify-between ${
-                    isActive
-                      ? 'bg-sand border-botanical shadow-card ring-2 ring-botanical/20'
-                      : 'bg-white hover:bg-sand/30 border-sand-border'
-                  }`}
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-white text-botanical border border-sand-border">
-                      {pillar.badge}
-                    </span>
-                    <Icon className={`w-5 h-5 ${isActive ? 'text-botanical' : 'text-charcoal-muted'}`} />
+        {/* Pillars Tab Selector */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+          {pillars.map((pillar, idx) => {
+            const Icon = pillar.icon;
+            const isActive = activePillar === idx;
+            return (
+              <button
+                key={pillar.id}
+                onClick={() => setActivePillar(idx)}
+                className={`p-4 rounded-2xl text-left border transition-all cursor-pointer ${
+                  isActive
+                    ? 'bg-[#EAEFE6] border-[#245B37] shadow-soft ring-1 ring-[#245B37]'
+                    : 'bg-[#F5F7F1] border-[#E2E6DF] hover:bg-[#EAEFE6]/50'
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                    isActive ? 'bg-[#245B37] text-white' : 'bg-white text-[#245B37] border border-[#E2E6DF]'
+                  }`}>
+                    <Icon className="w-5 h-5" />
                   </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-[#6FAF45] block">Pillar 0{idx + 1}</span>
+                    <h3 className="font-serif text-sm font-bold text-[#252B27] leading-tight">{pillar.title}</h3>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
 
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-charcoal">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs text-charcoal-muted mt-1 leading-relaxed">
-                    {pillar.tagline}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Right Column: Active Pillar Deep-Dive Dossier */}
-          <div className="lg:col-span-7 bg-sand/35 rounded-3xl p-6 sm:p-10 border border-sand-border shadow-card flex flex-col justify-between">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mb-6">
-              <div className="relative h-56 sm:h-64 rounded-2xl overflow-hidden bg-white border border-sand-border p-4 flex items-center justify-center">
+        {/* Active Pillar Card */}
+        <div className="bg-[#F5F7F1] rounded-3xl p-6 sm:p-10 border border-[#E2E6DF] shadow-soft">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Image Box */}
+            <div className="lg:col-span-5">
+              <div className="relative w-full h-64 sm:h-80 rounded-2xl bg-white border border-[#E2E6DF] overflow-hidden p-6 flex items-center justify-center shadow-xs">
                 <Image
                   src={pillars[activePillar].image}
                   alt={pillars[activePillar].title}
                   fill
                   className="object-contain p-4"
                 />
+                <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#EAEFE6] text-[#245B37] border border-[#245B37]/30">
+                  {pillars[activePillar].badge}
+                </span>
               </div>
+            </div>
 
+            {/* Content */}
+            <div className="lg:col-span-7 flex flex-col justify-between">
               <div>
-                <span className="text-[11px] uppercase tracking-wider font-bold text-botanical block mb-1">
+                <span className="text-xs font-bold text-[#245B37] uppercase tracking-wider block mb-1">
                   {pillars[activePillar].subtitle}
                 </span>
-                <h4 className="font-serif text-xl sm:text-2xl font-bold text-charcoal mb-3">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#252B27] leading-tight mb-3">
                   {pillars[activePillar].title}
-                </h4>
-                <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4E5550] leading-relaxed mb-5">
                   {pillars[activePillar].description}
                 </p>
-              </div>
-            </div>
 
-            <div className="space-y-2.5 pt-4 border-t border-sand-border">
-              <span className="text-[10px] uppercase font-bold text-charcoal tracking-wider block">
-                Engineering Highlights & Proven Advantages:
-              </span>
-              {pillars[activePillar].highlights.map((h, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-charcoal">
-                  <CheckCircle className="w-4 h-4 text-botanical shrink-0 mt-0.5" />
-                  <span>{h}</span>
+                {/* Bullet Highlights */}
+                <div className="space-y-2 mb-6">
+                  {pillars[activePillar].highlights.map((item, hIdx) => (
+                    <div key={hIdx} className="flex items-start gap-2 text-xs text-[#252B27]">
+                      <CheckCircle className="w-4 h-4 text-[#245B37] shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-sand-border flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2 text-xs text-charcoal-muted">
-                <ShieldCheck className="w-4 h-4 text-leaf" />
-                <span>Authorized Arveer Impex Network</span>
               </div>
 
-              <Link
-                href="/products"
-                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-botanical hover:bg-botanical-hover text-offwhite text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
-              >
-                <span>Explore Catalog Models</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              <div className="pt-4 border-t border-[#E2E6DF] flex flex-wrap items-center gap-3">
+                <Link
+                  href="/products"
+                  className="px-5 py-2.5 rounded-xl bg-[#245B37] hover:bg-[#1C472B] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm inline-flex items-center gap-1.5"
+                >
+                  <span>Explore Machinery</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
+                <Link
+                  href="/spares"
+                  className="px-5 py-2.5 rounded-xl bg-white hover:bg-[#EAEFE6] text-[#245B37] border border-[#E2E6DF] text-xs font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-1.5"
+                >
+                  <Wrench className="w-4 h-4" />
+                  <span>Browse Spare Parts</span>
+                </Link>
+              </div>
+
             </div>
 
           </div>
-
         </div>
 
       </div>

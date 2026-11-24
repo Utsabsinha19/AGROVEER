@@ -9,7 +9,9 @@ import {
   Eye,
   Check,
   Star,
-  MessageCircle
+  MessageCircle,
+  Truck,
+  ShieldCheck
 } from 'lucide-react';
 import { Product } from '@/types';
 import { useCartStore } from '@/store/cartStore';
@@ -42,6 +44,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
   const isSawking = product.name.toLowerCase().includes('sawking') || product.id.includes('sawking');
   const isAgroveer = product.name.toLowerCase().includes('agroveer') || product.id.includes('agroveer');
 
+  // Discount calculation
+  const discountPercent = product.originalPrice
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    : 0;
+
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -63,37 +70,45 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
   };
 
   const whatsappInquiryUrl = `https://wa.me/917352210000?text=${encodeURIComponent(
-    `Hello Arveer Impex Sales Desk,\nI am inquiring about / placing an order for:\n• Model: ${product.name}\n• Category: ${product.category}\n• Price: ${formatCurrency(product.price)} (incl. 5% GST)\nPlease provide dispatch schedule and wholesale dealer quotation.`
+    `Hello Arveer Impex Sales Desk,\nI am inquiring about / requesting a quotation for:\n• Machinery Model: ${product.name}\n• SKU/Model Code: ${product.sku || product.id}\n• Category: ${product.category}\n• Price: ${formatCurrency(product.price)} (incl. GST)\nPlease provide dealer discount, availability, and dispatch schedule.`
   )}`;
 
   return (
-    <div className="group relative rounded-2xl sm:rounded-3xl overflow-hidden bg-[#F7F5F0] hover:bg-[#F0ECE1] border border-[rgba(166,201,106,0.18)] transition-all duration-300 hover:shadow-card hover:border-[#24583D]/50 flex flex-col justify-between">
+    <div className="group relative rounded-2xl overflow-hidden bg-white hover:border-[#245B37] border border-[#E2E6DF] transition-all duration-300 hover:shadow-card flex flex-col justify-between">
       <div>
-        {/* Product Image Window with Warm Field Sand Backdrop */}
-        <div className="relative w-full h-56 sm:h-72 overflow-hidden bg-white/70 flex items-center justify-center border-b border-[rgba(166,201,106,0.15)]">
-          <Image
-            src={imgError ? getCategoryFallback(product.category) : imgSrc}
-            alt={product.name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-contain p-4 sm:p-5 transition-transform duration-500 group-hover:scale-105"
-            onError={() => {
-              setImgError(true);
-              setImgSrc(getCategoryFallback(product.category));
-            }}
-            priority={product.featured}
-          />
+        
+        {/* Product Image Window (Clean Light Surface #F9FAF8) */}
+        <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-[#F9FAF8] flex items-center justify-center border-b border-[#E2E6DF]">
+          <Link href={`/products/${product.id}`} className="relative w-full h-full flex items-center justify-center p-4 sm:p-6">
+            <Image
+              src={imgError ? getCategoryFallback(product.category) : imgSrc}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-contain p-4 sm:p-5 transition-transform duration-500 group-hover:scale-105"
+              onError={() => {
+                setImgError(true);
+                setImgSrc(getCategoryFallback(product.category));
+              }}
+              priority={product.featured}
+            />
+          </Link>
 
-          {/* Brand Tags with Exact Palette Hex Codes */}
-          <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10 pointer-events-none">
-            {/* Sawking Gold Badge or Agroveer Power Tag */}
+          {/* Badges: Brand, Key Spec, Discount */}
+          <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10 pointer-events-none">
+            {discountPercent > 0 && (
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-[#E99A32] text-white shadow-sm">
+                {discountPercent}% OFF
+              </span>
+            )}
+
             {isSawking && (
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-bold shadow-sm bg-[#D4AF37]/15 text-[#9E7D17] border border-[#D4AF37]/40 backdrop-blur-md">
-                Sawking™ German Quality
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FFF7E6] text-[#9E7D17] border border-[#D4AF37]/40 shadow-xs">
+                Sawking™ German Spec
               </span>
             )}
             {isAgroveer && (
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wider font-bold shadow-sm bg-[#D64527]/15 text-[#D64527] border border-[#D64527]/40 backdrop-blur-md">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#F0F7F2] text-[#245B37] border border-[#245B37]/30 shadow-xs">
                 Agroveer™ Kisan Ki Pasand
               </span>
             )}
@@ -101,31 +116,34 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
             {product.badges.slice(0, 1).map((badge, bIdx) => (
               <span
                 key={bIdx}
-                className="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-sm border border-[rgba(166,201,106,0.25)] text-[10px] uppercase tracking-wider font-semibold text-[#24583D] shadow-sm"
+                className="px-2.5 py-0.5 rounded-full bg-white/95 text-[10px] uppercase tracking-wider font-semibold text-[#252B27] border border-[#E2E6DF] shadow-xs"
               >
                 {badge}
               </span>
             ))}
           </div>
 
-          {/* Quick Action Buttons (Wishlist & Quick View) */}
-          <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
+          {/* Top-Right Quick Action Icons */}
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
             <button
               onClick={handleToggleWishlist}
-              className={`p-2 rounded-xl backdrop-blur-sm transition-all duration-300 ${isWishlisted
-                  ? 'bg-[#24583D] text-[#F7F5F0] border border-[#24583D] shadow-sm'
-                  : 'bg-white/90 text-[#141A17] hover:text-[#24583D] hover:bg-white border border-[rgba(166,201,106,0.2)]'
-                }`}
-              title={isWishlisted ? 'Remove from saved' : 'Save model'}
+              className={`p-2 rounded-xl border transition-all duration-200 cursor-pointer ${
+                isWishlisted
+                  ? 'bg-[#245B37] text-white border-[#245B37] shadow-sm'
+                  : 'bg-white text-[#4E5550] hover:text-[#245B37] border-[#E2E6DF] hover:border-[#245B37]'
+              }`}
+              title={isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist'}
+              aria-label="Wishlist"
             >
-              <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
+              <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current text-white' : ''}`} />
             </button>
 
             {onQuickView && (
               <button
                 onClick={handleQuickViewClick}
-                className="p-2 rounded-xl bg-white/90 hover:bg-white text-[#141A17] hover:text-[#24583D] border border-[rgba(166,201,106,0.2)] backdrop-blur-sm transition-all duration-300 shadow-sm opacity-0 group-hover:opacity-100"
+                className="p-2 rounded-xl bg-white text-[#4E5550] hover:text-[#245B37] border border-[#E2E6DF] hover:border-[#245B37] transition-all duration-200 shadow-sm opacity-0 group-hover:opacity-100 cursor-pointer"
                 title="Quick preview"
+                aria-label="Quick View"
               >
                 <Eye className="w-4 h-4" />
               </button>
@@ -134,41 +152,37 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
         </div>
 
         {/* Content Box */}
-        <div className="p-4 sm:p-6">
-          {/* Category & Rating */}
-          <div className="flex items-center justify-between gap-2 mb-2 text-xs">
-            <span className="text-[11px] font-mono text-[#24583D] font-bold uppercase tracking-wider truncate">
+        <div className="p-4 sm:p-5">
+          {/* Category & Model Code */}
+          <div className="flex items-center justify-between gap-2 mb-1.5 text-xs">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#245B37] bg-[#EAEFE6] px-2 py-0.5 rounded">
               {product.category}
             </span>
             <div className="flex items-center gap-1 text-amber-500 shrink-0">
               <Star className="w-3.5 h-3.5 fill-current" />
-              <span className="font-bold text-[#141A17] text-xs">{product.rating}</span>
+              <span className="font-bold text-[#252B27] text-xs">{product.rating}</span>
+              <span className="text-[10px] text-[#767E78]">({product.reviewCount})</span>
             </div>
           </div>
 
           {/* Product Title */}
           <Link href={`/products/${product.id}`} className="block group/link">
-            <h3 className="font-serif text-base sm:text-lg font-bold text-[#141A17] group-hover/link:text-[#24583D] transition-colors leading-snug line-clamp-2">
+            <h3 className="font-serif text-sm sm:text-base font-bold text-[#252B27] group-hover/link:text-[#245B37] transition-colors leading-snug line-clamp-2 min-h-[2.5rem]">
               {product.name}
             </h3>
           </Link>
 
-          {/* Subtitle / Model Code */}
-          <p className="text-[11px] font-mono text-[#4F5D54] mt-1 line-clamp-1">
-            {product.scientificName}
+          {/* Model / Engineering Name */}
+          <p className="text-[11px] font-mono text-[#767E78] mt-1 line-clamp-1">
+            {product.sku ? `Model: ${product.sku} • ` : ''}{product.scientificName}
           </p>
 
-          {/* Short Tagline */}
-          <p className="text-xs text-[#4F5D54] mt-2 line-clamp-2 leading-relaxed">
-            {product.tagline}
-          </p>
-
-          {/* Specs Highlights */}
-          <div className="mt-4 pt-3 border-t border-[rgba(166,201,106,0.18)] grid grid-cols-2 gap-2 text-[11px]">
+          {/* Quick Technical Specs Grid */}
+          <div className="mt-3 pt-2.5 border-t border-[#E2E6DF] grid grid-cols-2 gap-2 text-[11px]">
             {product.specs.slice(0, 2).map((spec, sIdx) => (
-              <div key={sIdx} className="bg-white/80 p-1.5 rounded-lg border border-[rgba(166,201,106,0.15)]">
-                <span className="text-[#78877D] block truncate">{spec.label}</span>
-                <span className="font-semibold text-[#141A17] block truncate">{spec.value}</span>
+              <div key={sIdx} className="bg-[#F5F7F1] p-1.5 rounded-lg border border-[#E2E6DF]/60">
+                <span className="text-[#767E78] block truncate text-[10px]">{spec.label}</span>
+                <span className="font-semibold text-[#252B27] block truncate">{spec.value}</span>
               </div>
             ))}
           </div>
@@ -176,66 +190,73 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onQuickView }
       </div>
 
       {/* Pricing & Call-to-Action Footer */}
-      <div className="p-4 sm:p-6 pt-0">
-        <div className="pt-3 border-t border-[rgba(166,201,106,0.18)] flex items-baseline justify-between mb-3 sm:mb-4">
+      <div className="p-4 sm:p-5 pt-0">
+        <div className="pt-3 border-t border-[#E2E6DF] flex items-baseline justify-between mb-3">
           <div>
-            <span className="text-[10px] text-[#78877D] block">{t('exGst') || 'List (Ex. GST)'}: ₹{product.exGstPrice || Math.round(product.price / 1.05)}</span>
             <div className="flex items-baseline gap-2">
-              <span className="font-serif text-xl sm:text-2xl font-bold text-[#141A17]">
+              <span className="font-serif text-xl sm:text-2xl font-bold text-[#245B37]">
                 {formatCurrency(product.price)}
               </span>
               {product.originalPrice && (
-                <span className="text-xs text-[#78877D] line-through font-mono">
+                <span className="text-xs text-[#767E78] line-through font-mono">
                   {formatCurrency(product.originalPrice)}
                 </span>
               )}
             </div>
-            <span className="text-[10px] text-[#24583D] font-semibold block">{t('gstIncluded') || '+5% GST Included'}</span>
+            <div className="flex items-center gap-1.5 text-[10px] text-[#4E5550]">
+              <span>Ex. GST: ₹{product.exGstPrice || Math.round(product.price / 1.05)}</span>
+              <span>•</span>
+              <span className="text-[#6FAF45] font-semibold">+GST Included</span>
+            </div>
           </div>
 
-          <span className="text-[11px] text-[#24583D] font-medium bg-[#24583D]/10 px-2.5 py-1 rounded-full border border-[#24583D]/20">
-            {t('inStock') || 'In Stock'}
+          <span className="text-[10px] font-bold text-[#245B37] bg-[#EAEFE6] px-2 py-1 rounded-full border border-[#245B37]/20">
+            In Stock
           </span>
         </div>
 
-        {/* CTA Buttons */}
+        {/* Action Buttons: Add to Order / Cart & WhatsApp Enquire */}
         <div className="flex items-center gap-2">
-          {/* Primary CTA: Harvest Botanical Green (#24583D) with text #FFFFFF / #F7F5F0 */}
+          {/* Primary Action Button */}
           <button
             onClick={handleAddToCart}
-            className={`flex-1 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 border shadow-sm ${added
-                ? 'bg-[#A6C96A] text-[#102C22] border-[#A6C96A]'
-                : 'bg-[#24583D] hover:bg-[#1B4731] text-[#F7F5F0] hover:text-[#FFFFFF] border-[#24583D] hover:border-[#A6C96A]'
-              }`}
+            className={`flex-1 py-2.5 px-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 border shadow-sm cursor-pointer ${
+              added
+                ? 'bg-[#6FAF45] text-white border-[#6FAF45]'
+                : 'bg-[#245B37] hover:bg-[#1C472B] text-white border-[#245B37]'
+            }`}
           >
             {added ? (
               <>
-                <Check className="w-4 h-4" />
-                <span>{t('addedToQuote') || 'Added to Order'}</span>
+                <Check className="w-4 h-4 stroke-[2.5]" />
+                <span>Added</span>
               </>
             ) : (
               <>
-                <ShoppingBag className="w-4 h-4 text-[#A6C96A]" />
-                <span>{t('addToQuote') || 'Add to Order'}</span>
+                <ShoppingBag className="w-4 h-4 text-[#6FAF45]" />
+                <span>Add to Cart</span>
               </>
             )}
           </button>
 
-          {/* WhatsApp Direct Action: WhatsApp Green (#25D366) */}
+          {/* WhatsApp Direct Enquiry Action */}
           <a
             href={whatsappInquiryUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white transition-colors shadow-sm"
+            className="p-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white transition-colors shadow-sm flex items-center justify-center shrink-0 cursor-pointer"
             title="Inquire directly on WhatsApp"
+            aria-label="WhatsApp Enquiry"
           >
             <MessageCircle className="w-4 h-4 fill-current" />
           </a>
 
+          {/* Direct Product Link */}
           <Link
             href={`/products/${product.id}`}
-            className="p-3 rounded-xl bg-white hover:bg-[#F7F5F0] text-[#141A17] hover:text-[#24583D] border border-[rgba(166,201,106,0.25)] transition-colors"
-            title="View Specifications & Video"
+            className="p-2.5 rounded-xl bg-[#F5F7F1] hover:bg-[#EAEFE6] text-[#252B27] hover:text-[#245B37] border border-[#E2E6DF] transition-colors flex items-center justify-center shrink-0 cursor-pointer"
+            title="View Specifications & Spares"
+            aria-label="View Details"
           >
             <Eye className="w-4 h-4" />
           </Link>
